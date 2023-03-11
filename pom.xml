@@ -18,12 +18,51 @@
         <elastic-job.version>2.1.5</elastic-job.version>
         <spring-alibaba.version>2.2.9.RELEASE</spring-alibaba.version>
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
-        <spring-cloud.version></spring-cloud.version>
+        <spring-boot-maven-plugin.version>2.6.6</spring-boot-maven-plugin.version>
 
     </properties>
 
+    <build>
+        <!-- maven渲染配置文件 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <pluginManagement>
+            <plugins>
+                <!-- springboot打包(可以启动的子模块需显式引入) -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>2.6.6</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- 生成源码包 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.0.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
 
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
-
+    </build>
 
 </project>
