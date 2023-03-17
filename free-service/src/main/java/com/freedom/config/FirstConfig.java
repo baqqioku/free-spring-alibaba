@@ -25,4 +25,12 @@ public class FirstConfig {
     public void setAge(Integer age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "FirstConfig{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
