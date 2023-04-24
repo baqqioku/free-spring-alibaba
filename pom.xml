@@ -12,6 +12,7 @@
     <modules>
         <module>free-service</module>
         <module>free-dependencies</module>
+        <module>free-common</module>
     </modules>
 
     <properties>

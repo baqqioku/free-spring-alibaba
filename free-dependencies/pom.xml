@@ -51,6 +51,12 @@
                  <scope>import</scope>
              </dependency>
 
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
