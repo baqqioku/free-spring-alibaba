@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.freedom")
 @EnableDiscoveryClient
 @RefreshScope
 public class FreeServiceApplication {
@@ -18,6 +18,8 @@ public class FreeServiceApplication {
 
     public static void main(String[] args){
         SpringApplication.run(FreeServiceApplication.class);
+        //System.getProperties().setProperty("spring.cloud.nacos.discovery.metadata.guoguo","guoguo");
+
 
     }
 }
