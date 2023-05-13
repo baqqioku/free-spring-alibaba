@@ -1,5 +1,6 @@
 package com.freedom.framework.mq.config;
 
+import com.free.common.util.TraceUtil;
 import org.apache.rocketmq.client.hook.ConsumeMessageContext;
 import org.apache.rocketmq.client.hook.ConsumeMessageHook;
 import org.apache.rocketmq.common.message.MessageExt;
@@ -21,10 +22,14 @@ public class ConsumerHook implements ConsumeMessageHook {
     public void consumeMessageBefore(ConsumeMessageContext consumeMessageContext) {
         List<MessageExt> msgList = consumeMessageContext.getMsgList();
         for(MessageExt messageExt : msgList){
-            String tag = messageExt.getProperty(TraceIdUtil.TAG);
+            String tag = messageExt.getProperty(TraceUtil.TAG);
+            String traceId = messageExt.getProperty(TraceUtil.TRACE_ID);
+            MDC.put(TraceUtil.TAG,tag);
+            MDC.put(TraceUtil.TRACE_ID,traceId);
             logger.info(tag);
-            MDC.put(TraceIdUtil.TAG,tag);
+
         }
+
     }
 
     @Override
