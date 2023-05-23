@@ -24,7 +24,6 @@ public class SengMessageHook implements SendMessageHook {
         String traceId = TraceUtil.getTraceId();
         logger.info(MDC.get(TraceUtil.TAG));
         logger.info(MDC.get(topic));
-        sendMessageContext.getMessage().setTopic(topic);
         sendMessageContext.getMessage().putUserProperty(TraceUtil.TRACE_ID,traceId);
         sendMessageContext.getMessage().putUserProperty(TraceUtil.TAG, TraceUtil.getGrayTag());
     }

@@ -5,10 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.DefaultRequest;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerUriTools;
-import org.springframework.cloud.client.loadbalancer.Request;
-import org.springframework.cloud.client.loadbalancer.Response;
+import org.springframework.cloud.client.loadbalancer.*;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.filter.ReactiveLoadBalancerClientFilter;
@@ -28,7 +25,7 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.free.common.util.TraceUtil.TAG;
+import static com.free.common.util.TraceUtil.*;
 import static com.free.common.util.TraceUtil.TRACE_ID;
 
 @Component
@@ -47,16 +44,17 @@ public class GrayFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        //ServerHttpRequest request = exchange.getRequest();
+        ServerHttpRequest request = exchange.getRequest();
 
-        String tag = "gray";//headers.getFirst(REQUEST_COLOR);
+        //String tag = "gray";//headers.getFirst(REQUEST_COLOR);
+        String tag = request.getHeaders().getFirst(REQUEST_COLOR);
 
         Map<String, String> headers = new HashMap<>();
         headers.put(TAG, tag);
         headers.put(TRACE_ID,TraceUtil.getTraceId());
         setHeader(exchange, headers);
-        log.info("<-----------------------------[网关-路由选择]:路由选择开始----------------------------->");
         URI url = exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR);
+        log.info("<-----------------------------[网关-路由选择]:路由选择开始,URL:{}----------------------------->",url);
         String schemePrefix = exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_SCHEME_PREFIX_ATTR);
         ServerWebExchangeUtils.addOriginalRequestUrl(exchange, url);
         if (log.isTraceEnabled()) {
@@ -77,7 +75,9 @@ public class GrayFilter implements GlobalFilter, Ordered {
                 URI requestUrl = this.reconstructURI(serviceInstance, uri);
                 exchange.getAttributes().put(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR, requestUrl);
             }
-        }).then(chain.filter(exchange));
+        }).then(chain.filter(exchange))
+                .doOnError(t -> log.error("response error: ",t))
+                .doOnSuccess(v -> log.info("response success"));
     }
 
 

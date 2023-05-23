@@ -11,5 +11,8 @@ public class MyConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
         System.out.println(message);
+        RocketMQMessageListener declaredAnnotation = getClass().getDeclaredAnnotation(RocketMQMessageListener.class);
+        System.out.println(declaredAnnotation.consumerGroup());
+
     }
 }

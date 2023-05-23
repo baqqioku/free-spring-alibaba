@@ -20,6 +20,7 @@ public class TraceUtil {
         String traceId = MDC.get(TRACE_ID);
         if(StringUtils.isBlank(traceId)){
             traceId= UUID.randomUUID().toString().replace("-", "");
+            MDC.put(TRACE_ID,traceId);
         }
         return traceId;
     }

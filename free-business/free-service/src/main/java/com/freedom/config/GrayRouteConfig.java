@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-@NacosConfigurationProperties(dataId = "grayRoute", groupId = "DEFAULT_GROUP", autoRefreshed = true,type = ConfigType.JSON )
+@NacosConfigurationProperties(dataId = "grayRoute.json", autoRefreshed = true,type = ConfigType.JSON )
 public class GrayRouteConfig {
     private List<GrayRoute> routes;
 

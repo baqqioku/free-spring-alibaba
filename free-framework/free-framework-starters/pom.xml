@@ -19,6 +19,7 @@
     <modules>
         <module>free-framework-starter-rocketmq</module>
         <module>free-framework-starter-gateway</module>
+        <module>free-framework-starter-nacos</module>
     </modules>
 
 

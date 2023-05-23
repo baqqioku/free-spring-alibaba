@@ -3,10 +3,13 @@ package com.freedom.controller;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.free.common.util.TraceUtil;
+import com.freedom.ao.AliPayNotifyAo;
+import com.freedom.ao.CallbackVo;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.framework.mq.config.WsRocketMQTemplate;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,8 +37,8 @@ public class FirstController {
     @RequestMapping("/test")
     @ResponseBody
     public ResponseVo test(){
-        MDC.put(TraceUtil.TAG,"gray");
-        MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
+        //MDC.put(TraceUtil.TAG,"gray");
+        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
         List<String> messages = new ArrayList<String>();
         messages.add("1");
         messages.add("2");
@@ -54,5 +57,35 @@ public class FirstController {
         rocketMQTemplate.syncSend("guoguo${tag}", "hello guoguo");
 
         return ResponseVo.success("gray");
+    }
+
+    @RequestMapping("/test3")
+    @ResponseBody
+    public ResponseVo test3(@RequestBody String text) throws NacosException {
+        //MDC.put(TraceUtil.TAG,"gray");
+        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
+
+
+        return ResponseVo.success(text);
+    }
+
+    @RequestMapping("/test4")
+    @ResponseBody
+    public ResponseVo test3(@RequestBody CallbackVo vo) throws NacosException {
+        //MDC.put(TraceUtil.TAG,"gray");
+        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
+
+
+        return ResponseVo.success(vo);
+    }
+
+    @RequestMapping("/test5")
+    @ResponseBody
+    public ResponseVo test5(@RequestBody AliPayNotifyAo vo) throws NacosException {
+        //MDC.put(TraceUtil.TAG,"gray");
+        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
+
+
+        return ResponseVo.success(vo);
     }
 }

@@ -49,6 +49,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
+            <version>3.1.1</version>
         </dependency>
 
         <dependency>
@@ -57,8 +58,19 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.freedom</groupId>
             <artifactId>free-framework-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-gray</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

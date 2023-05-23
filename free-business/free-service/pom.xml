@@ -83,6 +83,12 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-gray</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
 
 
 

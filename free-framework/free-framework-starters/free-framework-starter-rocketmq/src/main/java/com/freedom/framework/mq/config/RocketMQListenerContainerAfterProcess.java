@@ -15,8 +15,6 @@ public class RocketMQListenerContainerAfterProcess implements BeanPostProcessor 
         if(bean instanceof DefaultRocketMQListenerContainer){
             DefaultRocketMQListenerContainer defaultRocketMQListenerContainer = (DefaultRocketMQListenerContainer) bean;
             defaultRocketMQListenerContainer.getConsumer().getDefaultMQPushConsumerImpl().registerConsumeMessageHook(new ConsumerHook());
-            //defaultRocketMQListenerContainer.getConsumer().getDefaultMQPushConsumerImpl().registerFilterMessageHook(new GrayMesageFilterHook());
-
             return defaultRocketMQListenerContainer;
         }
 
