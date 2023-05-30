@@ -5,7 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.*;
+import org.springframework.cloud.client.loadbalancer.DefaultRequest;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerUriTools;
+import org.springframework.cloud.client.loadbalancer.Request;
+import org.springframework.cloud.client.loadbalancer.Response;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.filter.ReactiveLoadBalancerClientFilter;
@@ -26,7 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.free.common.util.TraceUtil.*;
-import static com.free.common.util.TraceUtil.TRACE_ID;
 
 @Component
 public class GrayFilter implements GlobalFilter, Ordered {
@@ -61,6 +63,7 @@ public class GrayFilter implements GlobalFilter, Ordered {
             log.trace(ReactiveLoadBalancerClientFilter.class.getSimpleName() + " url before: " + url);
         }
         return this.choose(exchange).doOnNext((response) -> {
+            MDC.clear();
             if (!response.hasServer()) {
                 assert url != null;
                 throw NotFoundException.create(true, "Unable to find instance for " + url.getHost());
@@ -75,9 +78,9 @@ public class GrayFilter implements GlobalFilter, Ordered {
                 URI requestUrl = this.reconstructURI(serviceInstance, uri);
                 exchange.getAttributes().put(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR, requestUrl);
             }
-        }).then(chain.filter(exchange))
-                .doOnError(t -> log.error("response error: ",t))
-                .doOnSuccess(v -> log.info("response success"));
+        }).then(chain.filter(exchange));
+                /*.doOnError(t -> MDC.clear())
+                .doOnSuccess(v -> MDC.clear() );*/
     }
 
 

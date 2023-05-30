@@ -25,7 +25,7 @@ import java.util.List;
 
 import static com.free.common.util.TraceUtil.TRACE_ID;
 
-@Component
+//@Component
 public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
 
     private Logger log = LoggerFactory.getLogger(ModifyRequestBodyFilter.class);
@@ -46,9 +46,10 @@ public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
 
 
         if (contentLength > 0 && request.getMethod()== HttpMethod.POST) {
-            if (MediaType.APPLICATION_JSON.equals(contentType) || MediaType.APPLICATION_JSON_UTF8.equals(contentType)) {
+            //if (MediaType.APPLICATION_JSON.equals(contentType) || MediaType.APPLICATION_JSON_UTF8.equals(contentType)) {
+
                 return readBody(exchange, chain);
-            }
+            //}
         }
 
         return chain.filter(exchange);

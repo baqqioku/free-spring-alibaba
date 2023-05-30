@@ -20,7 +20,7 @@ public class TraceUtil {
         String traceId = MDC.get(TRACE_ID);
         if(StringUtils.isBlank(traceId)){
             traceId= UUID.randomUUID().toString().replace("-", "");
-            MDC.put(TRACE_ID,traceId);
+            //MDC.put(TRACE_ID,traceId);
         }
         return traceId;
     }
@@ -28,7 +28,7 @@ public class TraceUtil {
     public static String getGrayTag(){
         String tag = MDC.get(TAG);
         if(StringUtils.isBlank(tag)){
-            MDC.put(TAG,PROD);
+            //MDC.put(TAG,PROD);
             return PROD;
         };
         return tag;

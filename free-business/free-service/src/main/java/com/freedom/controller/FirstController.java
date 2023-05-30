@@ -7,6 +7,9 @@ import com.freedom.ao.AliPayNotifyAo;
 import com.freedom.ao.CallbackVo;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.framework.mq.config.WsRocketMQTemplate;
+import com.freedom.second.api.SecondApi;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,12 +18,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.free.common.web.vo.ResponseVo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/first")
 public class FirstController {
+    Logger logger = LoggerFactory.getLogger(FirstController.class);
 
     @Autowired
     private WsRocketMQTemplate rocketMQTemplate;
@@ -30,6 +40,9 @@ public class FirstController {
 
     @Autowired
     private GrayRouteConfig grayRouteConfig;
+
+    @Autowired
+    SecondApi sercondApi;
 
     @Autowired
     //private GrayRouteService grayRouteService;
@@ -55,7 +68,7 @@ public class FirstController {
         MDC.put(TraceUtil.TAG,"gray");
         MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
         rocketMQTemplate.syncSend("guoguo${tag}", "hello guoguo");
-
+        logger.info("test1");
         return ResponseVo.success("gray");
     }
 
@@ -81,11 +94,57 @@ public class FirstController {
 
     @RequestMapping("/test5")
     @ResponseBody
-    public ResponseVo test5(@RequestBody AliPayNotifyAo vo) throws NacosException {
+    public ResponseVo test5(@RequestBody AliPayNotifyAo vo) {
         //MDC.put(TraceUtil.TAG,"gray");
         //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
-
-
+        logger.info("test5");
+        System.out.println(1/0);
         return ResponseVo.success(vo);
     }
+
+
+    @RequestMapping("/test6")
+    @ResponseBody
+    public ResponseVo test5() {
+        //MDC.put(TraceUtil.TAG,"gray");
+        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
+        logger.info("test6");
+
+        return ResponseVo.success(sercondApi.sayHello("guoguo"));
+    }
+
+    @RequestMapping("/test7")
+    public ResponseVo test7(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //MDC.put(TraceUtil.TAG,"gray");
+        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
+        String sb = streamToString(request.getInputStream());
+        logger.info(sb);
+
+        return ResponseVo.success(sercondApi.sayHello("guoguo"));
+    }
+
+    public  String streamToString(InputStream inputStream) {
+        BufferedReader br;
+        br = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        StringBuilder sb = new StringBuilder();
+        try {
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                br.close();
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
+
+
 }

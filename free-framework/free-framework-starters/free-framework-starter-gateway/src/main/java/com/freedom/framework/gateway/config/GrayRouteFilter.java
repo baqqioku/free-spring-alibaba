@@ -1,34 +1,21 @@
 package com.freedom.framework.gateway.config;
 
 import com.free.common.util.TraceUtil;
-import com.freedom.gray.nacos.GrayRouteMap;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.freedom.framework.gateway.core.config.GrayRouteMap;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.io.buffer.*;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.codec.HttpMessageReader;
-import org.springframework.http.codec.multipart.Part;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.stereotype.Component;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.free.common.util.TraceUtil.*;
-import static com.freedom.gray.nacos.RouteConstant.*;
+import static com.freedom.framework.gateway.core.config.RouteConstant.*;
 
 /**
  * 优先级放在最大

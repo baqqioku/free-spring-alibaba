@@ -72,8 +72,8 @@ public class GrayRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBal
         String tag = headers.getFirst(TAG);
         String traceId = headers.getFirst(TRACE_ID);
         //存储链路
-        TraceUtil.putTag(tag);
-        MDC.put(TRACE_ID,traceId);
+       /* TraceUtil.putTag(tag);
+        MDC.put(TRACE_ID,traceId);*/
         boolean grayInvocation = false;
         if(StringUtils.isNotBlank(tag) && tag.equals(GRAY)){
             grayInvocation = true;
@@ -106,6 +106,7 @@ public class GrayRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBal
             log.error("请求应用[{}]无可用路由", serviceId);
             return new EmptyResponse();
         }
+
     }
 }
 

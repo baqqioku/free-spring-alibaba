@@ -4,7 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.free.common.util.TraceUtil;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -32,7 +33,7 @@ import static com.free.common.util.TraceUtil.REQUEST_COLOR;
 import static com.free.common.util.TraceUtil.TRACE_ID;
 
 
-@Component
+//@Component
 public class CallBackRouteFilter implements GlobalFilter, Ordered {
     private Logger log = LoggerFactory.getLogger(GrayRoundRobinLoadBalancer.class);
 
@@ -45,6 +46,8 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
         webChatCallBack.add("/pay/agencyWeChatNotify");
         webChatCallBack.add("/order/pay/");
         webChatCallBack.add("/first/test4");
+        webChatCallBack.add("/first/test7");
+
         aliPayCallBack.add("/pay/agencyAliPayNotify");
         aliPayCallBack.add("/pay/aliPayNotify");
         aliPayCallBack.add("/first/test5");
@@ -64,6 +67,10 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
         if (request.getMethod() == HttpMethod.POST) {
             AtomicReference<String> requestBody = new AtomicReference<>("");
             ServerHttpRequestDecorator requestDecorator = new ServerHttpRequestDecorator(request);
+
+            request.getQueryParams().forEach((k, v) -> {
+                log.info("key:{},value:{}", k, v);
+            });
             Flux<DataBuffer> body = requestDecorator.getBody();
             body.subscribe(buffer -> {
                 CharBuffer charBuffer = StandardCharsets.UTF_8.decode(buffer.asByteBuffer());
@@ -79,6 +86,8 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
                     finalTarget = aliPayNoitify(requestParams,finalTarget);
                 }
             }
+            String body2= requestBody.get().toString();
+            log.info("body2:{}",body2);
         }
         headers.put(REQUEST_COLOR, finalTarget);
         headers.put(TRACE_ID, TraceUtil.getTraceId());

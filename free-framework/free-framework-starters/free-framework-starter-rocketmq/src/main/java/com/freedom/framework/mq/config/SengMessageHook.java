@@ -19,7 +19,6 @@ public class SengMessageHook implements SendMessageHook {
     @Override
     public void sendMessageBefore(SendMessageContext sendMessageContext) {
         String topic = sendMessageContext.getMessage().getTopic();
-        GrayDeployConfigWrapper.resolvePlaceholder(topic);
 
         String traceId = TraceUtil.getTraceId();
         logger.info(MDC.get(TraceUtil.TAG));

@@ -15,6 +15,10 @@
 
     <modules>
         <module>free-service</module>
+        <module>free-service-second</module>
+        <module>free-service-third</module>
+        <module>free-service-third/third-api</module>
+        <module>free-service-third/third-provider</module>
     </modules>
 
     <properties>
