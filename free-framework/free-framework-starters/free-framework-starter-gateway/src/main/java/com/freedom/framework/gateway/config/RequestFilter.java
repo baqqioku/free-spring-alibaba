@@ -27,6 +27,7 @@ public class RequestFilter implements GlobalFilter,GatewayFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         log.info("进入 RequestFilter");
         ServerHttpRequest request = exchange.getRequest();
+        request.getQueryParams().forEach((k, v) -> log.info("k:{},v:{}", k, v));
         String requestBody = exchange.getAttribute(ServerWebExchangeUtils.CACHED_REQUEST_BODY_ATTR);
         //exchange.getRequest();
         String method = request.getMethodValue();

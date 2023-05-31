@@ -1,8 +1,10 @@
 package com.freedom.framework.gateway.config;
 
 import com.free.common.util.TraceUtil;
+import com.freedom.framework.gateway.core.config.CallBackConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -25,10 +27,13 @@ import java.util.List;
 
 import static com.free.common.util.TraceUtil.TRACE_ID;
 
-//@Component
+@Component
 public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
 
     private Logger log = LoggerFactory.getLogger(ModifyRequestBodyFilter.class);
+
+    @Autowired
+    private CallBackConfigProperties callBackConfigProperties;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -43,13 +48,12 @@ public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
         MediaType contentType = headers.getContentType();
         long contentLength = headers.getContentLength();
         exchange.getRequest().mutate().header(TRACE_ID, TraceUtil.getTraceId());
-
+        String targetUrl = request.getURI().getPath();
 
         if (contentLength > 0 && request.getMethod()== HttpMethod.POST) {
-            //if (MediaType.APPLICATION_JSON.equals(contentType) || MediaType.APPLICATION_JSON_UTF8.equals(contentType)) {
-
+            if(callBackConfigProperties.getAliPayCallBack().contains(targetUrl)|| callBackConfigProperties.webChatCallBack.contains(targetUrl)){
                 return readBody(exchange, chain);
-            //}
+            }
         }
 
         return chain.filter(exchange);
@@ -68,39 +72,51 @@ public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
      * @return
      */
     private Mono<Void> readBody(ServerWebExchange exchange, GatewayFilterChain chain) {
-        /**
-         * join the body
-         */
-        return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {
-            byte[] bytes = new byte[dataBuffer.readableByteCount()];
-            dataBuffer.read(bytes);
-            DataBufferUtils.release(dataBuffer);
-            Flux<DataBuffer> cachedFlux = Flux.defer(() -> {
-                DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
-                DataBufferUtils.retain(buffer);
-                return Mono.just(buffer);
+        try {
+            /**
+             * join the body
+             */
+            return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {
+                byte[] bytes = new byte[dataBuffer.readableByteCount()];
+                dataBuffer.read(bytes);
+                DataBufferUtils.release(dataBuffer);
+                Flux<DataBuffer> cachedFlux = Flux.defer(() -> {
+                    DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+                    DataBufferUtils.retain(buffer);
+                    return Mono.just(buffer);
+                });
+                /**
+                 * repackage ServerHttpRequest
+                 */
+                ServerHttpRequest mutatedRequest = new ServerHttpRequestDecorator(exchange.getRequest()) {
+                    @Override
+                    public Flux<DataBuffer> getBody() {
+                        return cachedFlux;
+                    }
+                };
+                /**
+                 * mutate exchage with new ServerHttpRequest
+                 */
+                ServerWebExchange mutatedExchange = exchange.mutate().request(mutatedRequest).build();
+                System.out.println(1 / 0);
+                /**
+                 * read body string with default messageReaders
+                 */
+                return ServerRequest.create(mutatedExchange, messageReaders).bodyToMono(String.class)
+                        .doOnNext(objectValue -> {
+                            log.info("[GatewayContext]Read JsonBody:{}", objectValue);
+                        }).then(chain.filter(mutatedExchange)).doOnError(e -> {
+                            e.printStackTrace();
+                            chain.filter(exchange);
+                        });
+            }).doOnError(e -> {
+                e.printStackTrace();
+                chain.filter(exchange);
             });
-            /**
-             * repackage ServerHttpRequest
-             */
-            ServerHttpRequest mutatedRequest = new ServerHttpRequestDecorator(exchange.getRequest()) {
-                @Override
-                public Flux<DataBuffer> getBody() {
-                    return cachedFlux;
-                }
-            };
-            /**
-             * mutate exchage with new ServerHttpRequest
-             */
-            ServerWebExchange mutatedExchange = exchange.mutate().request(mutatedRequest).build();
-            /**
-             * read body string with default messageReaders
-             */
-            return ServerRequest.create(mutatedExchange, messageReaders).bodyToMono(String.class)
-                    .doOnNext(objectValue -> {
-                        log.info("[GatewayContext]Read JsonBody:{}", objectValue);
-                    }).then(chain.filter(mutatedExchange));
-        });
+        }catch (Exception e){
+            e.printStackTrace();
+            return chain.filter(exchange);
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.freedom.controller;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.free.common.util.TraceUtil;
 import com.freedom.ao.AliPayNotifyAo;
@@ -117,10 +118,21 @@ public class FirstController {
     public ResponseVo test7(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //MDC.put(TraceUtil.TAG,"gray");
         //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
-        String sb = streamToString(request.getInputStream());
-        logger.info(sb);
+        String json = JSON.toJSONString(request.getParameterMap());
+
+        logger.info(json);
 
         return ResponseVo.success(sercondApi.sayHello("guoguo"));
+    }
+
+    @RequestMapping("/test8")
+    @ResponseBody
+    public ResponseVo test8(HttpServletRequest request, HttpServletResponse response) {
+        //MDC.put(TraceUtil.TAG,"gray");
+        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
+        String json = JSON.toJSONString(request.getParameterMap());
+        logger.info(json);
+        return ResponseVo.success(json);
     }
 
     public  String streamToString(InputStream inputStream) {
