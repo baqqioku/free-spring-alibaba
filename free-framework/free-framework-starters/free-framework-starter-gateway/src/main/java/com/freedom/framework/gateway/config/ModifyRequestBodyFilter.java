@@ -37,6 +37,7 @@ public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info(callBackConfigProperties.toString());
 
         /**
          * save request path and serviceId into gateway context
@@ -47,7 +48,6 @@ public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
         // 处理参数
         MediaType contentType = headers.getContentType();
         long contentLength = headers.getContentLength();
-        exchange.getRequest().mutate().header(TRACE_ID, TraceUtil.getTraceId());
         String targetUrl = request.getURI().getPath();
 
         if (contentLength > 0 && request.getMethod()== HttpMethod.POST) {
@@ -98,7 +98,7 @@ public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
                  * mutate exchage with new ServerHttpRequest
                  */
                 ServerWebExchange mutatedExchange = exchange.mutate().request(mutatedRequest).build();
-                System.out.println(1 / 0);
+                //System.out.println(1 / 0);
                 /**
                  * read body string with default messageReaders
                  */
@@ -121,6 +121,6 @@ public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -20;
+        return -400;
     }
 }

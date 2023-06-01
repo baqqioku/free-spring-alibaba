@@ -47,7 +47,6 @@ public class GrayRouteFilter implements GlobalFilter, Ordered {
 
         Map<String, String> headers = new HashMap<>();
         headers.put(REQUEST_COLOR, finalTarget);
-        headers.put(TRACE_ID, TraceUtil.getTraceId());
         setHeader(exchange, headers);
 
         return chain.filter(exchange);
@@ -59,7 +58,7 @@ public class GrayRouteFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return HIGHEST_PRECEDENCE;
+        return -500;
     }
 
     /**

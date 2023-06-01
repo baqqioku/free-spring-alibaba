@@ -96,11 +96,11 @@ public class GrayRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBal
         ServiceInstance toBeChooseInstance;
         if (grayInvocation && grayInstanceServer.size() > 0) {
             toBeChooseInstance = grayInstanceServer.get(pos % grayInstanceServer.size());
-            log.info("<-----------------------------[网关-路由选择]:[{}]灰度路由,携带版本号为:[{}],请求地址[{}]----------------------------->", serviceId,tag, toBeChooseInstance.getUri());
+            log.info(traceId+"<-----------------------------[网关-路由选择]:[{}]灰度路由,携带版本号为:[{}],请求地址[{}]----------------------------->", serviceId,tag, toBeChooseInstance.getUri());
             return new DefaultResponse(toBeChooseInstance);
         } else if (defaultInstanceServer.size()>0) {
             toBeChooseInstance = defaultInstanceServer.get(pos % defaultInstanceServer.size());
-            log.info("<-----------------------------[网关-路由选择]:[{}]默认路由,携带版本号为:[{}],请求地址:[{}]----------------------------->", serviceId,tag, toBeChooseInstance.getUri());
+            log.info(traceId+"<-----------------------------[网关-路由选择]:[{}]默认路由,携带版本号为:[{}],请求地址:[{}]----------------------------->", serviceId,tag, toBeChooseInstance.getUri());
             return new DefaultResponse(toBeChooseInstance);
         }else {
             log.error("请求应用[{}]无可用路由", serviceId);

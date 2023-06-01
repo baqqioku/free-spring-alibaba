@@ -53,7 +53,6 @@ public class GrayFilter implements GlobalFilter, Ordered {
 
         Map<String, String> headers = new HashMap<>();
         headers.put(TAG, tag);
-        headers.put(TRACE_ID,TraceUtil.getTraceId());
         setHeader(exchange, headers);
         URI url = exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR);
         log.info("<-----------------------------[网关-路由选择]:路由选择开始,URL:{}----------------------------->",url);

@@ -1,21 +1,24 @@
 package com.freedom.framework.gateway.core.config;
 
 
+import com.alibaba.nacos.api.annotation.NacosProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
-//@Configuration
+
 @Component
 @ConfigurationProperties(prefix = "pay.callback")
 public class CallBackConfigProperties {
 
 
-    public List<String> aliPayCallBack;
+    public List<String> aliPayCallBack = new ArrayList<>();
 
-    public List<String> webChatCallBack;
+    public List<String> webChatCallBack = new ArrayList<>();
 
 
     public List<String> getAliPayCallBack() {

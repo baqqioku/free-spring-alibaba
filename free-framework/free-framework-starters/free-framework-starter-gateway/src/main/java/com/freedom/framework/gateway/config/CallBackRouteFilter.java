@@ -17,6 +17,7 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
@@ -26,7 +27,9 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -71,7 +74,7 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
                         requestBody.set(charBuffer.toString());
                     });
                     //获取body参数
-                    String requestParams = requestBody.get().toString();
+                    String requestParams = requestBody.get();
 
                     if (requestParams != null) {
                         if (callBackConfigProperties.getWebChatCallBack().contains(targetUrl)) {
@@ -85,15 +88,15 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
                     log.error("支付回调解析请求参数异常", e);
                 }
             }
+
             headers.put(REQUEST_COLOR, finalTarget);
-            headers.put(TRACE_ID, TraceUtil.getTraceId());
             setHeader(exchange, headers);
         }
 
         return chain.filter(exchange);
     }
 
-    private Map<String, String>  handlerFromGateway(String str, ServerHttpRequest request) {
+    private Map<String, String>  handlerFromGateway(String str, ServerHttpRequest request)  {
         String contentType = request.getHeaders().getContentType().toString();
         String sep = "--" + contentType.replace("multipart/form-data;boundary=", "");
         String[] strs = str.split("\r\n");
@@ -138,6 +141,15 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
         }
 
         request.getQueryParams().forEach((k, v) -> params.put(k, v.toString()));
+        String[] urlparams = str.split("&");
+        String jsonRequestData = Arrays.stream(urlparams).filter(str2 -> str2.startsWith("out_trade_no=")).findFirst().get();
+        String out_trade_no = null;
+        try {
+            out_trade_no = URLDecoder.decode(jsonRequestData.split("=")[1],"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        params.put("out_trade_no", out_trade_no);
 
         return params;
     }
@@ -149,9 +161,11 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
     private String webChatNoitifyNext(String requestParams,String finalTarget){
         SortedMap<String, String> resultMap = new TreeMap<>(parseMapFromXmlStr(requestParams));
         String outTradeNo = resultMap.get("out_trade_no");
-        System.out.println(1/0);
+
         if(StringUtils.isNotBlank(outTradeNo)){
             //String target = redisTemplate.opsForValue().get(CALL_BACK_PREF+outTradeNo);
+            String[] outTradeNoStr = outTradeNo.split("-");
+
             return "gray";
         }
 
@@ -163,15 +177,17 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
 
         Map json = handlerFromGateway(requestParams,requestDecorator);
         log.info("json:{}",json);
-        System.out.println(1/0);
         if(!json.isEmpty()){
             json.get("out_trade_no");
             //if(!jsonArray.isEmpty()){
                 //String target = redisTemplate.opsForValue().get(CALL_BACK_PREF+jsonArray.getString(0));
-                return "gray";
+            String target = "gray";
+            target = Optional.ofNullable(target).orElse(finalTarget);
+
+            return target;
             //}
         }
-        System.out.println(1/0);
+
         return finalTarget;
     }
 
@@ -179,7 +195,7 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -10;
+        return -300;
     }
 
     /**
@@ -193,6 +209,7 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
             for (String key : headers.keySet()) {
                 String value = headers.get(key);
                 if (value != null) {
+                    httpHeaders.remove(key);
                     httpHeaders.add(key, value);
                 }
             }
