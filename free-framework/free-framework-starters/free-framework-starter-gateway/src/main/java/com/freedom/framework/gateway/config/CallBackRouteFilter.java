@@ -166,7 +166,7 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
             //String target = redisTemplate.opsForValue().get(CALL_BACK_PREF+outTradeNo);
             String[] outTradeNoStr = outTradeNo.split("-");
 
-            return "gray";
+            return finalTarget;
         }
 
         return finalTarget;
@@ -181,7 +181,7 @@ public class CallBackRouteFilter implements GlobalFilter, Ordered {
             json.get("out_trade_no");
             //if(!jsonArray.isEmpty()){
                 //String target = redisTemplate.opsForValue().get(CALL_BACK_PREF+jsonArray.getString(0));
-            String target = "gray";
+            String target = finalTarget;
             target = Optional.ofNullable(target).orElse(finalTarget);
 
             return target;

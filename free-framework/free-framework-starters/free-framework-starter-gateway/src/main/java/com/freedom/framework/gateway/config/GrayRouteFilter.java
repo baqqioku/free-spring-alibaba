@@ -36,7 +36,9 @@ public class GrayRouteFilter implements GlobalFilter, Ordered {
         String varsionTarget = GrayRouteMap.getVersionRoute(varsion);
         String AllTarget = GrayRouteMap.getAllRoute(ALL_VALUE);
 
-        String finalTarget = PROD;
+        String tag = request.getHeaders().getFirst(REQUEST_COLOR);//"gray";
+        tag = StringUtils.isBlank(tag)? PROD : tag;
+        String finalTarget = tag;
         if(StringUtils.isNotBlank(tokenTarget)){
             finalTarget = tokenTarget;
         }else if(StringUtils.isNotBlank(varsionTarget)){
@@ -72,6 +74,7 @@ public class GrayRouteFilter implements GlobalFilter, Ordered {
             for (String key : headers.keySet()) {
                 String value = headers.get(key);
                 if (value != null) {
+                    httpHeaders.remove(key);
                     httpHeaders.add(key, value);
                 }
             }

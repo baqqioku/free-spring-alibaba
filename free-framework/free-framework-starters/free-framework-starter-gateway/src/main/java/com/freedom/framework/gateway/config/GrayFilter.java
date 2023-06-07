@@ -48,8 +48,9 @@ public class GrayFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
+
         //String tag = "gray";//headers.getFirst(REQUEST_COLOR);
-        String tag = request.getHeaders().getFirst(REQUEST_COLOR);
+        String tag = exchange.getRequest().getHeaders().getFirst(REQUEST_COLOR);
 
         Map<String, String> headers = new HashMap<>();
         headers.put(TAG, tag);
