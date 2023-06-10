@@ -30,11 +30,11 @@ public class NacosServerRegistryAutoConfiguration {
         metadata.put("server.startup.time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 .format(new Date()));
 
-        String group = GroupConfig.getDefaultGroupName();
+        //String group = GroupConfig.getDefaultGroupName();
         metadata.put(TraceUtil.TAG, StringUtils.isNotBlank(GroupConfig.getDefaultGroupName())?GroupConfig.getDefaultGroupName():TraceUtil.PROD);
         //这个配置默认是空值
-        System.getProperties().put(TraceUtil.TAG,StringUtils.isNotBlank(group)?StringUtils.upperCase(group):group);
-        /*System.getProperties().put(TraceUtil.GROUP,group);*/
+        //System.getProperties().put(TraceUtil.TAG,StringUtils.isNotBlank(group)?StringUtils.upperCase(group):group);
+        //System.getProperties().put(TraceUtil.GROUP,group);
         return nacosDiscoveryProperties;
     }
 

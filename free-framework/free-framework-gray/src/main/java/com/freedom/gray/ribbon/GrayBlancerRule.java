@@ -82,13 +82,16 @@ public class GrayBlancerRule extends AbstractLoadBalancerRule {
                     toBeChooseInstance = ExtendBalancer.getHostByRandomWeight2(grayInstances);
                     logger.debug("进入灰度实例：{}", toBeChooseInstance.toString());
                     return new NacosServer(toBeChooseInstance);
-                }
-                if (noneGrayInstances.size() > 0) {
+                }else if(grayInvocation && grayInstances.size() == 0){
+                    logger.error("无灰度实例：{}", serviceName,"no gray instance();");
+                    return null;
+                }else if (noneGrayInstances.size() > 0) {
                     toBeChooseInstance = ExtendBalancer.getHostByRandomWeight2(noneGrayInstances);
                 } else {
-                    toBeChooseInstance = ExtendBalancer.getHostByRandomWeight2(allInstances);
+                    logger.error("无服务实例：{}", serviceName,"no gray instance();");
+                    return null;
                 }
-                logger.debug("正常实例：{}",toBeChooseInstance.toString());
+                logger.debug("正常实例：{}",serviceName);
                 return new NacosServer(toBeChooseInstance);
             }
         } catch (Exception e) {

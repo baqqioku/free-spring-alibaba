@@ -10,6 +10,8 @@ public class TraceUtil {
 
     public  static final String TRACE_ID = "traceId";
 
+    public static final String GROUP = "group";
+
     public  static final String TAG = "tag";
 
     public static final String PROD = "prod";
