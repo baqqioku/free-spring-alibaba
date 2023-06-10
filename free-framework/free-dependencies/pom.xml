@@ -83,6 +83,27 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-framework-gray</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>third-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-service-second-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+
+
         </dependencies>
     </dependencyManagement>
 

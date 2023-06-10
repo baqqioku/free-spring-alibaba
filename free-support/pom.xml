@@ -3,24 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>free-framework</artifactId>
+        <artifactId>free-spring-alibaba</artifactId>
         <groupId>com.freedom</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>free-support</artifactId>
     <packaging>pom</packaging>
-    <artifactId>free-framework-starters</artifactId>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
     <modules>
-        <module>free-framework-starter-rocketmq</module>
-        <module>free-framework-starter-nacos</module>
+        <module>free-framework-starter-gateway</module>
     </modules>
-
-
 
 </project>

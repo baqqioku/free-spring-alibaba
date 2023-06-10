@@ -30,10 +30,12 @@
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-nacos</artifactId>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,11 +45,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
 
@@ -69,10 +66,6 @@
             <artifactId>free-framework-starter-rocketmq</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.freedom</groupId>
-            <artifactId>free-framework-common</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -85,20 +78,16 @@
         <dependency>
             <groupId>com.freedom</groupId>
             <artifactId>free-framework-gray</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.freedom</groupId>
             <artifactId>free-service-second-api</artifactId>
-            <version>${project.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.freedom</groupId>
             <artifactId>third-api</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
 
