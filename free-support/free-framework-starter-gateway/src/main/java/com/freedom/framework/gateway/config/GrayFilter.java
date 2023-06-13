@@ -63,7 +63,7 @@ public class GrayFilter implements GlobalFilter, Ordered {
             log.trace(ReactiveLoadBalancerClientFilter.class.getSimpleName() + " url before: " + url);
         }
         return this.choose(exchange).doOnNext((response) -> {
-            MDC.clear();
+
             if (!response.hasServer()) {
                 assert url != null;
                 throw NotFoundException.create(true, "Unable to find instance for " + url.getHost());
