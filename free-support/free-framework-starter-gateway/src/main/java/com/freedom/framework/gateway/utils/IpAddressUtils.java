@@ -3,11 +3,7 @@ package com.freedom.framework.gateway.utils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
-/**
- * @Description
- * @Author HuangFuBin
- * @Date 2021-02-22
- */
+
 public class IpAddressUtils {
     public static String getIp(ServerHttpRequest request) {
         HttpHeaders headers = request.getHeaders();

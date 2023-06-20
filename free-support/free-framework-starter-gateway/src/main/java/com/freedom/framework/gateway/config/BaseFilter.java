@@ -17,11 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * @Description
- * @Author HuangFuBin
- * @Date 2021-02-18
- */
 
 @Component
 public class BaseFilter implements GlobalFilter, Ordered {

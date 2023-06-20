@@ -5,7 +5,7 @@
     <springProperty name="MAX_HISTORY" scope="context" source="spring.logback.max.history" defaultValue="365"/>
     <springProperty name="MAX_FILE_SIZE" scope="context" source="spring.logback.max.fileSize" defaultValue="2GB"/>
 
-    <property name="LOG_HOME" value="/data/wanshun/log"/>
+    <property name="LOG_HOME" value="/data/free/log"/>
     <property name="FILE_PATTERN" value="${LOG_HOME}/%d{yyyy-MM,aux}/${FILE_NAME}-%d{yyyy-MM-dd}.%i.log"/>
     <property name="PATTERN" value="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%M:%line] -%X{traceId} -%X{tag} %msg%n"/>
 
