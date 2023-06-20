@@ -1,10 +1,5 @@
 package com.freedom.framework.gateway.config;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.free.common.util.TraceUtil;
-
 import com.freedom.framework.gateway.core.config.CallBackConfigProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
@@ -17,13 +12,11 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -36,9 +29,6 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.free.common.util.TraceUtil.REQUEST_COLOR;
-import static com.free.common.util.TraceUtil.TRACE_ID;
-import static com.freedom.framework.gateway.core.config.RouteConstant.aliPayCallBack;
-import static com.freedom.framework.gateway.core.config.RouteConstant.webChatCallBack;
 
 
 @Component

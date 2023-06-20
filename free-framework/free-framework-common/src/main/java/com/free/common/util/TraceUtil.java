@@ -6,7 +6,7 @@ import org.slf4j.MDC;
 import java.util.UUID;
 
 public class TraceUtil {
-    public static final String REQUEST_COLOR = "X-WS-Request-Color";
+    public static final String REQUEST_COLOR = "X-Request-Color";
 
     public  static final String TRACE_ID = "traceId";
 
