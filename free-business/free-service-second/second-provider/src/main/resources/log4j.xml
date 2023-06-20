@@ -39,6 +39,7 @@
         </root>
 
         <root level="INFO">
+
             <appender-ref ref="info_file"/>
         </root>
     <!-- endregion -->
