@@ -1,8 +1,7 @@
 # free-springAlibaba
 
 #### 介绍
-springAlibaba
-使用SrpingAlibaba 全家桶，实现了灰度发布
+集成了SpringCloudAlibaba 全家桶，实现了灰度发布
 
 #### 软件架构
 软件架构说明
