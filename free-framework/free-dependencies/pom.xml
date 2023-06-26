@@ -22,6 +22,11 @@
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
+        <jwt.version>0.9.1</jwt.version>
+        <!--实用插件-->
+        <knife4j.version>3.0.3</knife4j.version>
+        <swagger-annotations.version>1.5.22</swagger-annotations.version>
+
 
     </properties>
 
@@ -59,12 +64,21 @@
                 <version>2.1.1</version>
             </dependency>
 
+            <!--  knife4j Api文档 -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>com.freedom</groupId>
                 <artifactId>free-framework-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
+            <!--框架包-->
             <dependency>
                 <groupId>com.freedom</groupId>
                 <artifactId>free-framework-starter-rocketmq</artifactId>
@@ -73,8 +87,19 @@
 
             <dependency>
                 <groupId>com.freedom</groupId>
-                <artifactId>free-framework-starter-gateway</artifactId>
+                <artifactId>free-framework-starter-web</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+
+
+
+
+            <!--基础组件-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
 
             <dependency>

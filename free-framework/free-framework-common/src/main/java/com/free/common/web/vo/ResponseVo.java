@@ -34,6 +34,10 @@ public class ResponseVo <T>{
         return  new ResponseVo<T>(errorCode,"失败",data);
     }
 
+    public static <T> ResponseVo error(String message){
+        return  new ResponseVo<T>(errorCode,message);
+    }
+
     public Integer getCode() {
         return code;
     }
