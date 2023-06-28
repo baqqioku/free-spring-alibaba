@@ -103,6 +103,12 @@
             </dependency>
 
             <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.freedom</groupId>
                 <artifactId>free-framework-starter-nacos</artifactId>
                 <version>${project.version}</version>

@@ -6,6 +6,8 @@ import com.alibaba.nacos.api.exception.NacosException;
 import com.free.common.util.TraceUtil;
 import com.freedom.ao.AliPayNotifyAo;
 import com.freedom.ao.CallbackVo;
+import com.freedom.ao.GuoguoVo;
+import com.freedom.ao.SignType;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.framework.mq.config.WsRocketMQTemplate;
 import com.freedom.second.api.SecondApi;
@@ -133,6 +135,15 @@ public class FirstController {
         String json = JSON.toJSONString(request.getParameterMap());
         logger.info(json);
         return ResponseVo.success(json);
+    }
+
+    @RequestMapping("/test9")
+    @ResponseBody
+    public ResponseVo test9() {
+        GuoguoVo guoguoVo = new GuoguoVo();
+        guoguoVo.setName("guoguo");
+        guoguoVo.setSignType(SignType.ADD);
+        return ResponseVo.success(guoguoVo);
     }
 
     public  String streamToString(InputStream inputStream) {
