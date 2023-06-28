@@ -2,7 +2,7 @@ package com.freedom.framework.web.swagger;
 
 import com.fasterxml.jackson.databind.introspect.AnnotatedField;
 import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
-import com.msb.framework.common.model.IDict;
+import com.free.common.model.IDict;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.extern.slf4j.Slf4j;
 import springfox.documentation.spi.DocumentationType;
@@ -38,7 +38,7 @@ public class EnumPropertyBuilderPlugin implements ModelPropertyBuilderPlugin, Ex
                 .map(BeanPropertyDefinition::getField)
                 .map(AnnotatedField::getAnnotated)
                 .ifPresent(field -> {
-                    com.msb.framework.web.swagger.ApiModelPropertyEnum apiModelPropertyEnum = field.getAnnotation(com.msb.framework.web.swagger.ApiModelPropertyEnum.class);
+                    ApiModelPropertyEnum apiModelPropertyEnum = field.getAnnotation(ApiModelPropertyEnum.class);
                     ApiModelProperty apiModelProperty = field.getAnnotation(ApiModelProperty.class);
                     if (apiModelPropertyEnum != null && apiModelProperty != null) {
                         String description = this.getDescription(apiModelPropertyEnum);
@@ -57,9 +57,9 @@ public class EnumPropertyBuilderPlugin implements ModelPropertyBuilderPlugin, Ex
     @Override
     public void apply(ParameterExpansionContext context) {
         Optional<ApiModelProperty> apiModelPropertyOptional = context.findAnnotation(ApiModelProperty.class);
-        Optional<com.msb.framework.web.swagger.ApiModelPropertyEnum> apiModelPropertyEnumOptional = context.findAnnotation(com.msb.framework.web.swagger.ApiModelPropertyEnum.class);
+        Optional<ApiModelPropertyEnum> apiModelPropertyEnumOptional = context.findAnnotation(ApiModelPropertyEnum.class);
         if (apiModelPropertyOptional.isPresent() && apiModelPropertyEnumOptional.isPresent()) {
-            com.msb.framework.web.swagger.ApiModelPropertyEnum apiModelPropertyEnum = apiModelPropertyEnumOptional.get();
+            ApiModelPropertyEnum apiModelPropertyEnum = apiModelPropertyEnumOptional.get();
             context.getRequestParameterBuilder().description(this.getDescription(apiModelPropertyEnum));
         }
     }
@@ -72,7 +72,7 @@ public class EnumPropertyBuilderPlugin implements ModelPropertyBuilderPlugin, Ex
     /**
      * 增强注释，将枚举信息添加到原注释之后
      */
-    private String getDescription(com.msb.framework.web.swagger.ApiModelPropertyEnum apiModelPropertyEnum) {
+    private String getDescription(ApiModelPropertyEnum apiModelPropertyEnum) {
         Class<? extends IDict<?>> dictEnum = apiModelPropertyEnum.dictEnum();
         return Arrays.stream(dictEnum.getEnumConstants()).map(dict -> dict.getCode() + "：" + dict.getText()).collect((Collectors.joining("，")));
     }

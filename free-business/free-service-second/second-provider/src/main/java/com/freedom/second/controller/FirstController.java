@@ -1,12 +1,10 @@
-package com.freedom.controller;
+package com.freedom.second.controller;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.free.common.util.TraceUtil;
-import com.freedom.ao.*;
-import com.freedom.config.GrayRouteConfig;
-import com.freedom.framework.mq.config.WsRocketMQTemplate;
+import com.free.common.web.vo.ResponseVo;
 import com.freedom.second.api.SecondApi;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.free.common.web.vo.ResponseVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,14 +31,12 @@ import java.util.List;
 public class FirstController {
     Logger logger = LoggerFactory.getLogger(FirstController.class);
 
-    @Autowired
-    private WsRocketMQTemplate rocketMQTemplate;
+
 
     @Autowired
     private NacosDiscoveryProperties properties;
 
-    @Autowired
-    private GrayRouteConfig grayRouteConfig;
+
 
     @Autowired
     SecondApi sercondApi;
@@ -60,7 +55,7 @@ public class FirstController {
         messages.add("3");
         messages.add("4");
         messages.add("51");
-        rocketMQTemplate.syncSend("guoguo",messages);
+
         return ResponseVo.success("果果你好");
     }
 
@@ -69,7 +64,6 @@ public class FirstController {
     public ResponseVo test1() throws NacosException {
         MDC.put(TraceUtil.TAG,"gray");
         MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
-        rocketMQTemplate.syncSend("guoguo${tag}", "hello guoguo");
         logger.info("test1");
         return ResponseVo.success("gray");
     }
@@ -84,25 +78,8 @@ public class FirstController {
         return ResponseVo.success(text);
     }
 
-    @RequestMapping("/test4")
-    @ResponseBody
-    public ResponseVo test3(@RequestBody CallbackVo vo) throws NacosException {
-        //MDC.put(TraceUtil.TAG,"gray");
-        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
 
 
-        return ResponseVo.success(vo);
-    }
-
-    @RequestMapping("/test5")
-    @ResponseBody
-    public ResponseVo test5(@RequestBody AliPayNotifyAo vo) {
-        //MDC.put(TraceUtil.TAG,"gray");
-        //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
-        logger.info("test5");
-        System.out.println(1/0);
-        return ResponseVo.success(vo);
-    }
 
 
     @RequestMapping("/test6")
@@ -150,7 +127,7 @@ public class FirstController {
     public ResponseVo test10(@RequestBody GuoguoAo guoguoAo) {
         GuoguoVo guoguoVo = new GuoguoVo();
         guoguoVo.setName("guoguo");
-        guoguoVo.setSignType(SignType.ADD);
+        guoguoVo.setSignType(guoguoAo.getSignType());
         return ResponseVo.success(guoguoVo);
     }
 

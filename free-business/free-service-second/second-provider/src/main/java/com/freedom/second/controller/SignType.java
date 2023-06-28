@@ -1,8 +1,7 @@
-package com.freedom.ao;
+package com.freedom.second.controller;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -17,6 +16,7 @@ public enum SignType {
     }
 
     //@JsonProperty(value = "signType", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonValue
     private int code;
     private String desc;
 
