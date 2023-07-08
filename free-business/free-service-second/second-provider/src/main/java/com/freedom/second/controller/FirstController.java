@@ -118,7 +118,7 @@ public class FirstController {
     public ResponseVo test9() {
         GuoguoVo guoguoVo = new GuoguoVo();
         guoguoVo.setName("guoguo");
-        guoguoVo.setSignType(SignType.ADD);
+        //guoguoVo.setSignType(SignType.ADD);
         return ResponseVo.success(guoguoVo);
     }
 
@@ -127,7 +127,7 @@ public class FirstController {
     public ResponseVo test10(@RequestBody GuoguoAo guoguoAo) {
         GuoguoVo guoguoVo = new GuoguoVo();
         guoguoVo.setName("guoguo");
-        guoguoVo.setSignType(guoguoAo.getSignType());
+        guoguoVo.setGuoguoType(GuoguoType.ADD);
         return ResponseVo.success(guoguoVo);
     }
 

@@ -1,6 +1,8 @@
 package com.freedom.second.provider;
 
 import com.freedom.second.api.SecondApi;
+import com.freedom.second.api.ao.FirstApi;
+import com.freedom.second.api.ao.FirstEnum;
 import com.freedom.third.api.ThirdApi;
 import org.checkerframework.checker.units.qual.A;
 import org.slf4j.Logger;
@@ -23,5 +25,13 @@ public class SecondProvider implements SecondApi {
         logger.info("hello {}", name);
         third.sayHello(name);
         return name;
+    }
+
+    @Override
+    public FirstApi sayHello1(String name) {
+        FirstApi  api = new FirstApi();
+        api.setName("guoguo");
+        api.setFirstEnum(FirstEnum.ONE);
+        return api;
     }
 }

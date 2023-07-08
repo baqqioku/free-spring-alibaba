@@ -3,11 +3,14 @@ package com.freedom.controller;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.exception.NacosException;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.free.common.util.TraceUtil;
+import com.free.common.web.vo.ResponseVo;
 import com.freedom.ao.*;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.framework.mq.config.WsRocketMQTemplate;
 import com.freedom.second.api.SecondApi;
+import com.freedom.second.api.ao.FirstApi;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,16 +20,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.free.common.web.vo.ResponseVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/first")
@@ -152,6 +157,26 @@ public class FirstController {
         guoguoVo.setName("guoguo");
         guoguoVo.setSignType(SignType.ADD);
         return ResponseVo.success(guoguoVo);
+    }
+
+    @RequestMapping("/test11")
+    @ResponseBody
+    public ResponseVo test11(@RequestBody GuoguoAo guoguoAo) {
+        GuoguoVo guoguoVo = new GuoguoVo();
+        guoguoVo.setName("guoguo");
+        guoguoVo.setSignType(SignType.ADD);
+        FirstApi firstApi = sercondApi.sayHello1("guoguo");
+        return ResponseVo.success(firstApi);
+    }
+
+    @RequestMapping("/test12")
+    @ResponseBody
+    public ResponseVo test12(@RequestBody @Valid GuoguoAo guoguoAo) {
+        GuoguoVo guoguoVo = new GuoguoVo();
+        guoguoVo.setName("guoguo");
+        guoguoVo.setSignType(SignType.ADD);
+        FirstApi firstApi = sercondApi.sayHello1("guoguo");
+        return ResponseVo.success(firstApi);
     }
 
     public  String streamToString(InputStream inputStream) {

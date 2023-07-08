@@ -8,6 +8,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+import java.util.Objects;
+import java.util.Optional;
+
 
 @SpringBootApplication(scanBasePackages = "com.freedom")
 @ServletComponentScan
@@ -21,6 +24,8 @@ public class FreeSecondServiceApplication {
     public static void main(String[] args){
         System.getProperties().setProperty("tag","gray");
         SpringApplication.run(FreeSecondServiceApplication.class);
+
+
 
         //
 

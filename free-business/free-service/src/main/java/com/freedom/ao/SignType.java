@@ -1,9 +1,6 @@
 package com.freedom.ao;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum SignType {
@@ -17,10 +14,10 @@ public enum SignType {
     }
 
     //@JsonProperty(value = "signType", access = JsonProperty.Access.WRITE_ONLY)
-    private int code;
+    private Integer code;
     private String desc;
 
-    @JsonCreator
+    //@JsonCreator
     public static SignType parse(int code) {
         SignType[] values = SignType.values();
         for (SignType value : values) {
@@ -31,7 +28,7 @@ public enum SignType {
         return null;
     }
 
-    @JsonValue
+    //@JsonValue
     public int getCode() {
         return code;
     }

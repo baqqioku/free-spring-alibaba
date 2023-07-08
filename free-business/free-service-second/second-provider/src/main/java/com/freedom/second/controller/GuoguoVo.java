@@ -2,10 +2,11 @@ package com.freedom.second.controller;
 
 import java.io.Serializable;
 
+
 public class GuoguoVo implements Serializable {
     private String name;
 
-    SignType signType;
+    GuoguoType guoguoType;
 
     public String getName() {
         return name;
@@ -15,11 +16,11 @@ public class GuoguoVo implements Serializable {
         this.name = name;
     }
 
-    public SignType getSignType() {
-        return signType;
+    public GuoguoType getGuoguoType() {
+        return guoguoType;
     }
 
-    public void setSignType(SignType signType) {
-        this.signType = signType;
+    public void setGuoguoType(GuoguoType guoguoType) {
+        this.guoguoType = guoguoType;
     }
 }

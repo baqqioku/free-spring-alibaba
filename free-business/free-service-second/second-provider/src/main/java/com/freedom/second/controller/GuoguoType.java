@@ -5,33 +5,33 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.free.common.model.IDict;
 
-//@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum SignType  implements IDict<Integer> {
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+public enum GuoguoType  {
 
     ADD(1,"补款"),
     SUB(-1,"扣款");
 
-    SignType(int code, String desc) {
-        init(code,desc);
+    GuoguoType(int code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
 
     //@JsonProperty(value = "signType", access = JsonProperty.Access.WRITE_ONLY)
-    /*@JsonValue
+    //@JsonValue
     private int code;
     private String desc;
 
-    @JsonCreator
-    public static SignType parse(int code) {
-        SignType[] values = SignType.values();
-        for (SignType value : values) {
+    //@JsonCreator
+    public static GuoguoType parse(int code) {
+        GuoguoType[] values = GuoguoType.values();
+        for (GuoguoType value : values) {
             if (value.getCode() == code) {
                 return value;
             }
         }
         return null;
     }
-*/
-    /*@JsonValue
+    //@JsonValue
     public int getCode() {
         return code;
     }
@@ -46,5 +46,9 @@ public enum SignType  implements IDict<Integer> {
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }*/
+    }
+
+    public static void main(String[] args){
+        System.out.println(GuoguoType.class.getSimpleName());
+    }
 }
