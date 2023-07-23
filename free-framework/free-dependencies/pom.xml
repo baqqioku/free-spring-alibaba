@@ -22,10 +22,12 @@
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
+
         <jwt.version>0.9.1</jwt.version>
         <!--实用插件-->
         <knife4j.version>3.0.3</knife4j.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
+        <seata.version>1.4.2</seata.version>
 
 
     </properties>
@@ -62,6 +64,12 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
                 <version>2.1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>${seata.version}</version>
             </dependency>
 
             <!--  knife4j Api文档 -->
