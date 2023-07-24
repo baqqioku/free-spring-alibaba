@@ -29,6 +29,9 @@
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <seata.version>1.4.2</seata.version>
 
+        <mysql.version>6.0.6</mysql.version>
+        <druid.version>1.2.4</druid.version>
+        <hibernate.validator.version>6.0.7.Final</hibernate.validator.version>
 
     </properties>
 
@@ -99,8 +102,23 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-framework-starter-seata</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-framework-starter-nacos</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-framework-gray</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
 
             <!--基础组件-->
@@ -116,18 +134,25 @@
                 <version>${swagger-annotations.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.freedom</groupId>
-                <artifactId>free-framework-starter-nacos</artifactId>
-                <version>${project.version}</version>
-            </dependency>
 
             <dependency>
-                <groupId>com.freedom</groupId>
-                <artifactId>free-framework-gray</artifactId>
-                <version>${project.version}</version>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
             </dependency>
 
+
+            <!--业务依赖-->
             <dependency>
                 <groupId>com.freedom</groupId>
                 <artifactId>third-api</artifactId>

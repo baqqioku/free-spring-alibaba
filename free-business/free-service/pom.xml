@@ -45,6 +45,16 @@
             <artifactId>free-framework-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-seata</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-gray</artifactId>
+        </dependency>
+
 
 <!--        <dependency>
             <groupId>com.alibaba.cloud</groupId>

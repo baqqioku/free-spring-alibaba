@@ -21,6 +21,7 @@
         <module>free-framework-starter-nacos</module>
         <module>free-framework-starter-web</module>
         <module>free-framework-starter-seata</module>
+        <module>free-framework-starter-mysql</module>
     </modules>
 
 
