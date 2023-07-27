@@ -17,6 +17,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.freedom")
 @RefreshScope
+//@MapperScan(basePackages = "com.freedom.**.mapper")
 public class FreeServiceApplication {
 
     @Autowired

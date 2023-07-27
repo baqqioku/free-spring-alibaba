@@ -9,6 +9,8 @@ import com.free.common.web.vo.ResponseVo;
 import com.freedom.ao.*;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.framework.mq.config.WsRocketMQTemplate;
+import com.freedom.model.AccountTbl;
+import com.freedom.model.mapper.AccountTblMapper;
 import com.freedom.second.api.SecondApi;
 import com.freedom.second.api.ao.FirstApi;
 import io.swagger.annotations.Api;
@@ -50,6 +52,9 @@ public class FirstController {
 
     @Autowired
     SecondApi sercondApi;
+
+    @Autowired
+    private AccountTblMapper accountTblMapper;
 
     @Autowired
     //private GrayRouteService grayRouteService;
@@ -177,6 +182,16 @@ public class FirstController {
         guoguoVo.setSignType(SignType.ADD);
         FirstApi firstApi = sercondApi.sayHello1("guoguo");
         return ResponseVo.success(firstApi);
+    }
+
+    @RequestMapping("/test13")
+    @ResponseBody
+    public ResponseVo test13() {
+        AccountTbl accountTbl = new AccountTbl();
+        accountTblMapper.insertSelective(accountTbl);
+        accountTbl.setUserId("U100002");
+        accountTbl.setMoney(1000);
+        return ResponseVo.success(accountTbl);
     }
 
     public  String streamToString(InputStream inputStream) {

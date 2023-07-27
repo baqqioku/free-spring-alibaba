@@ -29,9 +29,11 @@
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <seata.version>1.4.2</seata.version>
 
-        <mysql.version>6.0.6</mysql.version>
+        <mysql.version>8.0.12</mysql.version>
         <druid.version>1.2.4</druid.version>
         <hibernate.validator.version>6.0.7.Final</hibernate.validator.version>
+        <mybatis-plus.version>3.4.3.1</mybatis-plus.version>
+
 
     </properties>
 
@@ -116,6 +118,12 @@
 
             <dependency>
                 <groupId>com.freedom</groupId>
+                <artifactId>free-framework-starter-mysql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.freedom</groupId>
                 <artifactId>free-framework-gray</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -149,6 +157,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
 
 
