@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +33,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.concurrent.TimeUnit;
 
 
 @RestController
@@ -192,6 +193,14 @@ public class FirstController {
         accountTbl.setUserId("U100002");
         accountTbl.setMoney(1000);
         return ResponseVo.success(accountTbl);
+    }
+
+    //@Async
+    @RequestMapping("/test14")
+    public void test14(Integer num) throws InterruptedException {
+        logger.info(num+ "");
+
+        TimeUnit.HOURS.sleep(1);
     }
 
     public  String streamToString(InputStream inputStream) {

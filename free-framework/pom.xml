@@ -21,6 +21,7 @@
         <module>free-framework-gray</module>
         <module>free-dependencies</module>
         <module>free-framework-starters</module>
+        <module>free-framework-starters/free-framework-starter-statemachine</module>
     </modules>
 
     <dependencyManagement>
