@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freedom.model.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.freedom.model.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="userHead" jdbcType="VARCHAR" property="userhead" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, userId, userHead, createTime, updateTime, userName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.freedom.model.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user` (userId, userHead, createTime, 
+      updateTime, userName)
+    values (#{userid,jdbcType=VARCHAR}, #{userhead,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.freedom.model.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="userhead != null">
+        userHead,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="userhead != null">
+        #{userhead,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.freedom.model.User">
+    <!--@mbg.generated-->
+    update `user`
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="userhead != null">
+        userHead = #{userhead,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.freedom.model.User">
+    <!--@mbg.generated-->
+    update `user`
+    set userId = #{userid,jdbcType=VARCHAR},
+      userHead = #{userhead,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      userName = #{username,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

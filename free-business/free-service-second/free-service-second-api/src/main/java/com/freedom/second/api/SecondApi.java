@@ -21,4 +21,8 @@ public interface SecondApi {
     @JsonDeserialize(using = CustomEnumSerializer.class) // 使用自定义的序列化器
     public FirstApi sayHello1(@RequestBody  String name);
 
+    @PostMapping("/hello2")
+    @ResponseBody
+    public String sayHello2(@RequestBody  String name);
+
 }

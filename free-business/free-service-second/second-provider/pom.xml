@@ -41,13 +41,15 @@
             <artifactId>free-framework-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-mysql</artifactId>
+        </dependency>
 
-
-        <!--        <dependency>
-                    <groupId>com.alibaba.cloud</groupId>
-                    <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
-                </dependency>-->
-
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-seata</artifactId>
+        </dependency>
 
 
         <!-- 原来spring-cloud-dependencies 2020.0.0 版本不在默认加载bootstrap 文件，如果需要加载bootstrap 文件需要手动添加依赖。-->

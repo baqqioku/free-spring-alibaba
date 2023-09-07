@@ -13,16 +13,14 @@ import com.freedom.model.AccountTbl;
 import com.freedom.model.mapper.AccountTblMapper;
 import com.freedom.second.api.SecondApi;
 import com.freedom.second.api.ao.FirstApi;
+import com.freedom.service.FristService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,8 +55,11 @@ public class FirstController {
     @Autowired
     private AccountTblMapper accountTblMapper;
 
-    @Autowired
+
     //private GrayRouteService grayRouteService;
+
+    @Autowired
+    private FristService fristService;
 
     @RequestMapping("/test")
     @ResponseBody
@@ -201,6 +202,13 @@ public class FirstController {
         logger.info(num+ "");
 
         TimeUnit.HOURS.sleep(1);
+    }
+
+    @RequestMapping("/test15/{num}")
+    public void test15(@PathVariable String num) throws InterruptedException {
+
+
+        fristService.test1(num);
     }
 
     public  String streamToString(InputStream inputStream) {

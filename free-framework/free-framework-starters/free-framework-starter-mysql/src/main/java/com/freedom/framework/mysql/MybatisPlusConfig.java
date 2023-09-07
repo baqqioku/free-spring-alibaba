@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerIntercep
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 
+import com.freedom.framework.mysql.config.SqlLogPlugins;
 import com.freedom.framework.mysql.type.IDictTypeHandler;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeHandlerRegistry;
@@ -14,10 +15,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
-@MapperScan(basePackages = "com.msb.**.mapper")
+@MapperScan(basePackages = "com.freedom.**.mapper")
+@EnableTransactionManagement(proxyTargetClass = true)
 public class MybatisPlusConfig {
 
     /**
@@ -54,6 +57,7 @@ public class MybatisPlusConfig {
             SqlSessionFactory sqlSessionFactory = applicationContext.getBean(SqlSessionFactory.class);
             TypeHandlerRegistry typeHandlerRegistry = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry();
             typeHandlerRegistry.setDefaultEnumTypeHandler(IDictTypeHandler.class);
+            sqlSessionFactory.getConfiguration().addInterceptor(new SqlLogPlugins());
         }
     }
 }

@@ -14,4 +14,6 @@ public interface AccountTblMapper {
     int updateByPrimaryKeySelective(AccountTbl record);
 
     int updateByPrimaryKey(AccountTbl record);
+
+
 }

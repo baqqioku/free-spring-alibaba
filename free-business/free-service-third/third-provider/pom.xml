@@ -42,11 +42,15 @@
             <artifactId>free-framework-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-seata</artifactId>
+        </dependency>
 
-        <!--        <dependency>
-                    <groupId>com.alibaba.cloud</groupId>
-                    <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
-                </dependency>-->
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-mysql</artifactId>
+        </dependency>
 
 
 

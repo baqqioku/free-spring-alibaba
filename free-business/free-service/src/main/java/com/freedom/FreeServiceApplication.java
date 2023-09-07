@@ -26,7 +26,7 @@ public class FreeServiceApplication {
     FirstConfig firstConfig;
 
     public static void main(String[] args){
-        System.getProperties().setProperty("tag","gray");
+        System.getProperties().setProperty("tag","prod");
         SpringApplication.run(FreeServiceApplication.class);
 
         //

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.freedom.model.mapper.AccountTblMapper">
+<mapper namespace="com.freedom.model.mapper.AccountTblNextMapper">
   <resultMap id="BaseResultMap" type="com.freedom.model.AccountTbl">
     <!--@mbg.generated-->
     <!--@Table account_tbl-->
@@ -69,4 +69,12 @@
       money = #{money,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <insert id="batchInsert">
+    INSERT INTO account_tbl (id,user_id, money)
+    VALUES
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id},#{item.userId}, #{item.money})
+    </foreach>
+  </insert>
 </mapper>

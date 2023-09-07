@@ -28,7 +28,7 @@
         <knife4j.version>3.0.3</knife4j.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <seata.version>1.4.2</seata.version>
-
+        <rocketmq.version>2.2.0</rocketmq.version>
         <mysql.version>8.0.12</mysql.version>
         <druid.version>1.2.4</druid.version>
         <hibernate.validator.version>6.0.7.Final</hibernate.validator.version>
@@ -77,7 +77,7 @@
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
-                <version>2.1.1</version>
+                <version>${rocketmq.version}</version>
             </dependency>
 
             <dependency>
