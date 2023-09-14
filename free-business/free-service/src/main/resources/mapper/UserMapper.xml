@@ -25,11 +25,17 @@
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.freedom.model.User" useGeneratedKeys="true">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="money != null">
         money,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="money != null">
         #{money,jdbcType=BIGINT},
       </if>

@@ -8,7 +8,6 @@ import com.free.common.util.TraceUtil;
 import com.free.common.web.vo.ResponseVo;
 import com.freedom.ao.*;
 import com.freedom.config.GrayRouteConfig;
-import com.freedom.framework.mq.config.WsRocketMQTemplate;
 import com.freedom.model.AccountTbl;
 import com.freedom.model.mapper.AccountTblMapper;
 import com.freedom.second.api.SecondApi;
@@ -40,8 +39,8 @@ import java.util.concurrent.TimeUnit;
 public class FirstController {
     Logger logger = LoggerFactory.getLogger(FirstController.class);
 
-    @Autowired
-    private WsRocketMQTemplate rocketMQTemplate;
+    /*@Autowired
+    private WsRocketMQTemplate rocketMQTemplate;*/
 
     @Autowired
     private NacosDiscoveryProperties properties;
@@ -72,7 +71,7 @@ public class FirstController {
         messages.add("3");
         messages.add("4");
         messages.add("51");
-        rocketMQTemplate.syncSend("guoguo",messages);
+        //rocketMQTemplate.syncSend("guoguo",messages);
         return ResponseVo.success("果果你好");
     }
 
@@ -81,7 +80,7 @@ public class FirstController {
     public ResponseVo test1() throws NacosException {
         MDC.put(TraceUtil.TAG,"gray");
         MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
-        rocketMQTemplate.syncSend("guoguo${tag}", "hello guoguo");
+        //rocketMQTemplate.syncSend("guoguo${tag}", "hello guoguo");
         logger.info("test1");
         return ResponseVo.success("gray");
     }

@@ -1,3 +1,4 @@
+/*
 package com.freedom.consumer;
 
 import com.alibaba.fastjson.JSON;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@RocketMQMessageListener(topic = "guoguo", consumerGroup = "guoguotest")
+//@Component
+//@RocketMQMessageListener(topic = "guoguo", consumerGroup = "guoguotest")
 @Slf4j
 public class MyConsumer2 implements RocketMQListener<String> {
 
@@ -33,3 +34,4 @@ public class MyConsumer2 implements RocketMQListener<String> {
         //log.info(JSON.toJSONString(accountTbl1));
     }
 }
+*/

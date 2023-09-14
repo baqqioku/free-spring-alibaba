@@ -2,7 +2,6 @@ package com.freedom.service;
 
 import com.alibaba.fastjson.JSON;
 import com.freedom.config.FirstConfig;
-import com.freedom.framework.mq.config.WsRocketMQTemplate;
 import com.freedom.model.AccountTbl;
 import com.freedom.model.mapper.AccountTblNextMapper;
 import com.freedom.second.api.SecondApi;
@@ -42,8 +41,8 @@ public class FristService {
 
     ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    @Autowired
-    private WsRocketMQTemplate rocketMQTemplate;
+   /* @Autowired
+    private WsRocketMQTemplate rocketMQTemplate;*/
 
     //@GlobalTransactional
     @Transactional(rollbackFor = Exception.class)
@@ -54,7 +53,7 @@ public class FristService {
         List<AccountTbl> list = new ArrayList<>();
         for (int i = 10; i < 20; i++) {
             AccountTbl accountTbl = new AccountTbl();
-            accountTbl.setId(i);
+            //accountTbl.setId(i);
             accountTbl.setMoney(i);
             accountTbl.setUserId(i+"");
             list.add(accountTbl)   ;
@@ -104,16 +103,29 @@ public class FristService {
                 try {
                     // 在事务提交成功后发送消息到MQ
                     //System.out.print(1/0);
-                    rocketMQTemplate.syncSend("guoguo", JSON.toJSONString(list));
-                    throw new RuntimeException("111");
+                    //rocketMQTemplate.syncSend("guoguo", JSON.toJSONString(list));
+                    //throw new RuntimeException("111");
                 } catch (Exception e) {
                     // 发送消息到MQ时出现异常
                     // 标记当前事务为回滚状态
-                    transactionStatus.rollbackToSavepoint(savepoint);
+                    //transactionStatus.rollbackToSavepoint(savepoint);
                     throw new RuntimeException("发送消息到MQ失败", e);
                 }
             }
         });
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public boolean test2(AccountTbl accountTbl){
+        boolean flag = false;
+        try {
+            accountTblMapper.insertSelective(accountTbl);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("异常",e);
+        }
+        return flag;
     }
 
 

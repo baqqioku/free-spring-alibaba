@@ -41,10 +41,26 @@
         </Root>
 
         <!-- mybatis 日志输出 -->
-        <!--<logger name="com.freedom.model.mapper" level="debug" additivity="false">
+        <logger name="com.freedom.model.mapper" level="debug" additivity="false">
             <appender-ref ref="console"/>
             <appender-ref ref="info_file"/>
-        </logger>-->
+        </logger>
+
+        <logger name="org.apache.ibatis.logging.jdbc.PreparedStatementLogger" level="debug" additivity="false">
+            <appender-ref ref="console"/>
+            <appender-ref ref="info_file"/>
+        </logger>
+
+        <logger name="org.apache.ibatis.logging.jdbc.ResultSetLogger" level="debug" additivity="false">
+            <appender-ref ref="console"/>
+            <appender-ref ref="info_file"/>
+        </logger>
+
+        <logger name="org.apache.ibatis.logging.jdbc.ConnectionLogger" level="debug" additivity="false">
+            <appender-ref ref="console"/>
+            <appender-ref ref="info_file"/>
+        </logger>
+
 
         <logger name="com.alibaba.nacos.client.naming" level="ERROR" additivity="false">
             <appender-ref ref="console"/>

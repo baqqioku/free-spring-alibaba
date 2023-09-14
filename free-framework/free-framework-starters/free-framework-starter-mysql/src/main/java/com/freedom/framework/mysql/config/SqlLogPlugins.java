@@ -50,7 +50,7 @@ public class SqlLogPlugins implements Interceptor {
         if(parameterMappingList.size() >= 0 && parameterObject!=null){
             TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
             if(typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())){
-                sql =sql.replace("\\?", getParameterValue(parameterObject));
+                sql =sql.replaceFirst("\\?", getParameterValue(parameterObject));
             }else {
                 //非原始类型的参数
                 MetaObject metaObject = configuration.newMetaObject(parameterObject);

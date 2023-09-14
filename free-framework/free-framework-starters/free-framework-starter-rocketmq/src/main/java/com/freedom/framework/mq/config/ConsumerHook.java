@@ -27,8 +27,6 @@ public class ConsumerHook implements ConsumeMessageHook {
             String traceId = messageExt.getProperty(TraceUtil.TRACE_ID);
             MDC.put(TraceUtil.TAG, Optional.ofNullable(tag).orElseGet(TraceUtil::getGrayTag));
             MDC.put(TraceUtil.TRACE_ID,Optional.ofNullable(traceId).orElseGet(TraceUtil::getTraceId));
-            logger.info(tag);
-
         }
 
     }

@@ -1,3 +1,4 @@
+/*
 package com.freedom.consumer;
 
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
@@ -8,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 //@Component
-@RocketMQMessageListener(topic = "guoguo${tag}", selectorType = SelectorType.SQL92, selectorExpression = "tag is not null and tag = '${tag}'", consumerGroup = "guoguotest${tag}")
+//@RocketMQMessageListener(topic = "guoguo${tag}", selectorType = SelectorType.SQL92, selectorExpression = "tag is not null and tag = '${tag}'", consumerGroup = "guoguotest${tag}")
 public class MyConsumer implements RocketMQListener<String> {
     Logger logger = LoggerFactory.getLogger(MyConsumer.class);
     @Override
@@ -19,3 +20,4 @@ public class MyConsumer implements RocketMQListener<String> {
 
     }
 }
+*/
