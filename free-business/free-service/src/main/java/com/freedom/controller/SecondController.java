@@ -80,7 +80,7 @@ public class SecondController {
 
         producer.start();*/
 
-        //for(int i=0;i<10;i++){
+        for(int j=0;j<10;j++){
             String businessNo = UUID.randomUUID().toString();
             int i = new Random().nextInt(100);
             AccountTbl accountTbl = new AccountTbl();
@@ -98,10 +98,7 @@ public class SecondController {
             TransactionSendResult sendResult = transactionProducer.send("guoguo-transaction", JSON.toJSONString(accountTbl),businessNo);
             System.out.printf("%s%n", sendResult);
 
-        //}
-        //producer.shutdown();
-
-          //producer.sendMessageInTransaction()
+        }
 
         return "ok";
     }
