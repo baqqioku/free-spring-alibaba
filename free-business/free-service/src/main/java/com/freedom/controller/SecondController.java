@@ -1,6 +1,7 @@
 package com.freedom.controller;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.fastjson.JSON;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.model.AccountTbl;
@@ -103,6 +104,7 @@ public class SecondController {
         return "ok";
     }
 
+    @SentinelResource
     @RequestMapping("/test2")
     public String test2(){
         int i = new Random().nextInt(1000);

@@ -118,7 +118,7 @@ public class FirstController {
 
     @RequestMapping("/test6")
     @ResponseBody
-    public ResponseVo test5() {
+    public ResponseVo test6() {
         //MDC.put(TraceUtil.TAG,"gray");
         //MDC.put(TraceUtil.TRACE_ID,TraceUtil.getTraceId());
         logger.info("test6");
@@ -195,12 +195,13 @@ public class FirstController {
         return ResponseVo.success(accountTbl);
     }
 
-    //@Async
+
     @RequestMapping("/test14")
     public void test14(Integer num) throws InterruptedException {
-        logger.info(num+ "");
 
-        TimeUnit.HOURS.sleep(1);
+        String numString = fristService.test(num);
+        logger.info(numString+ "");
+
     }
 
     @RequestMapping("/test15/{num}")

@@ -37,7 +37,7 @@ public class TxProducerListener implements RocketMQLocalTransactionListener {
 
         int row = userMapper.insertSelective(user);
         try {
-            Thread.sleep(20000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

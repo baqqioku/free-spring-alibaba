@@ -7,6 +7,7 @@ import com.freedom.model.mapper.AccountTblNextMapper;
 import com.freedom.second.api.SecondApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -126,6 +128,12 @@ public class FristService {
             throw new RuntimeException("异常",e);
         }
         return flag;
+    }
+
+    @Async
+    public String test(int num) throws InterruptedException {
+        TimeUnit.HOURS.sleep(1);
+        return String.valueOf(num);
     }
 
 
