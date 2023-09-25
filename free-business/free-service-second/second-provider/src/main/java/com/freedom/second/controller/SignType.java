@@ -1,9 +1,6 @@
 package com.freedom.second.controller;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.free.common.model.IDict;
+import com.freedom.common.model.IDict;
 
 //@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum SignType  implements IDict<Integer> {

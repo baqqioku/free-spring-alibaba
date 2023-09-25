@@ -5,7 +5,7 @@ import com.alibaba.cloud.nacos.ribbon.ExtendBalancer;
 import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
-import com.free.common.util.TraceUtil;
+import com.freedom.common.util.TraceUtil;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.DynamicServerListLoadBalancer;

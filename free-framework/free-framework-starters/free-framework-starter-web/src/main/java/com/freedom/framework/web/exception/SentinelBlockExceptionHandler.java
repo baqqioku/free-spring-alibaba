@@ -3,7 +3,7 @@ package com.freedom.framework.web.exception;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.fastjson.JSON;
-import com.free.common.web.vo.ResponseVo;
+import com.freedom.common.web.vo.ResponseVo;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;

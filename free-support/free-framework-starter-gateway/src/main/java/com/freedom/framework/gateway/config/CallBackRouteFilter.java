@@ -28,7 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.free.common.util.TraceUtil.REQUEST_COLOR;
+import static com.freedom.common.util.TraceUtil.REQUEST_COLOR;
 
 
 @Component

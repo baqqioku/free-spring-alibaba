@@ -1,12 +1,7 @@
 package com.freedom.framework.web;
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.free.common.util.SpringContextUtil;
 import com.freedom.framework.web.config.DateTimeConfig;
 import com.freedom.framework.web.config.DateTimeConvertPrimaryConfig;
-import com.freedom.framework.web.serializer.BaseEnumDeserializer;
 import com.freedom.framework.web.swagger.SwaggerConfiguration;
 import com.freedom.framework.web.swagger.SwaggerShortcutController;
 import org.springframework.context.annotation.ComponentScan;

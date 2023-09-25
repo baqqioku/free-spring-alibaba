@@ -1,6 +1,6 @@
 package com.freedom.framework.web.swagger;
 
-import com.free.common.model.IDict;
+import com.freedom.common.model.IDict;
 
 import java.lang.annotation.*;
 

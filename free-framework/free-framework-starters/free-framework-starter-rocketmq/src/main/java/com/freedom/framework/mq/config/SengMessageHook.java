@@ -1,11 +1,10 @@
 package com.freedom.framework.mq.config;
 
-import com.free.common.util.TraceUtil;
+import com.freedom.common.util.TraceUtil;
 import org.apache.rocketmq.client.hook.SendMessageContext;
 import org.apache.rocketmq.client.hook.SendMessageHook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 public class SengMessageHook implements SendMessageHook {
 

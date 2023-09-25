@@ -1,7 +1,7 @@
 package com.freedom.framework.mysql.type;
 
 
-import com.free.common.model.IDict;
+import com.freedom.common.model.IDict;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;

@@ -1,6 +1,5 @@
 package com.freedom.framework.gateway.config;
 
-import com.free.common.util.TraceUtil;
 import com.freedom.framework.gateway.core.config.CallBackConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +23,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-
-import static com.free.common.util.TraceUtil.TRACE_ID;
 
 @Component
 public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {

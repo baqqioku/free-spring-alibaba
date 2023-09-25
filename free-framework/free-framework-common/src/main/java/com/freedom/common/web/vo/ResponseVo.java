@@ -1,4 +1,4 @@
-package com.free.common.web.vo;
+package com.freedom.common.web.vo;
 
 public class ResponseVo <T>{
     private Integer code;

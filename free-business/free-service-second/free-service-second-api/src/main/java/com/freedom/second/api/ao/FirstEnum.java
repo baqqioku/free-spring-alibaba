@@ -2,7 +2,7 @@ package com.freedom.second.api.ao;
 
 import com.alibaba.fastjson.annotation.JSONType;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.free.common.model.IDict;
+import com.freedom.common.model.IDict;
 
 @JsonFormat(shape = JsonFormat.Shape.ANY)
 @JSONType(serializeEnumAsJavaBean = true)

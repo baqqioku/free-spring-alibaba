@@ -2,7 +2,7 @@ package com.freedom.framework.web.swagger;
 
 import com.fasterxml.jackson.databind.introspect.AnnotatedField;
 import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
-import com.free.common.model.IDict;
+import com.freedom.common.model.IDict;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.extern.slf4j.Slf4j;
 import springfox.documentation.spi.DocumentationType;

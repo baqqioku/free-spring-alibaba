@@ -1,4 +1,4 @@
-package com.free.common.util;
+package com.freedom.common.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

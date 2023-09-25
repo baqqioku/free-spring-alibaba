@@ -1,6 +1,6 @@
 package com.freedom.framework.mq.config;
 
-import com.free.common.util.TraceUtil;
+import com.freedom.common.util.TraceUtil;
 import org.apache.rocketmq.client.hook.ConsumeMessageContext;
 import org.apache.rocketmq.client.hook.ConsumeMessageHook;
 import org.apache.rocketmq.common.message.MessageExt;

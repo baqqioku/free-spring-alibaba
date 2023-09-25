@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 
@@ -27,7 +28,9 @@ public class FreeServiceApplication {
 
     public static void main(String[] args){
         System.getProperties().setProperty("tag","prod");
-        SpringApplication.run(FreeServiceApplication.class);
+        ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(FreeServiceApplication.class);
+        configurableApplicationContext.getBeanFactory();
+
 
         //
 

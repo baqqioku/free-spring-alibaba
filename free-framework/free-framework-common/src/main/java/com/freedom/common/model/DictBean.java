@@ -1,4 +1,4 @@
-package com.free.common.model;
+package com.freedom.common.model;
 
 import lombok.Data;
 

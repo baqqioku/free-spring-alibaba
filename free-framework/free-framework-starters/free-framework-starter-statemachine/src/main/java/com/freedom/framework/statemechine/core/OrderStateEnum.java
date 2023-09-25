@@ -1,7 +1,5 @@
 package com.freedom.framework.statemechine.core;
 
-import com.free.common.model.IDict;
-
 public enum OrderStateEnum {
 
     CREATED, // 订单已创建

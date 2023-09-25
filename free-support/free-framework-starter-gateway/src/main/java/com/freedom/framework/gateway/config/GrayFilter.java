@@ -1,9 +1,7 @@
 package com.freedom.framework.gateway.config;
 
-import com.free.common.util.TraceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.DefaultRequest;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerUriTools;
@@ -27,8 +25,6 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.free.common.util.TraceUtil.*;
 
 @Component
 public class GrayFilter implements GlobalFilter, Ordered {

@@ -1,7 +1,7 @@
 package com.freedom.gray.nacos;
 
 
-import com.free.common.util.TraceUtil;
+import com.freedom.common.util.TraceUtil;
 import com.freedom.gray.config.GroupConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;

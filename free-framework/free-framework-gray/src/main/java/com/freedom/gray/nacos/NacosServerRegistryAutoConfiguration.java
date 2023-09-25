@@ -3,7 +3,7 @@ package com.freedom.gray.nacos;
 import com.alibaba.cloud.nacos.ConditionalOnNacosDiscoveryEnabled;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 
-import com.free.common.util.TraceUtil;
+import com.freedom.common.util.TraceUtil;
 import com.freedom.gray.config.GroupConfig;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

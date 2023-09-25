@@ -1,4 +1,4 @@
-package com.free.common.util;
+package com.freedom.common.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;

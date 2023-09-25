@@ -1,10 +1,8 @@
 package com.freedom.framework.gateway.config;
 
-import com.free.common.util.TraceUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.DefaultResponse;
@@ -23,9 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static com.free.common.util.TraceUtil.REQUEST_COLOR;
-import static com.free.common.util.TraceUtil.*;
 
 
 public class GrayRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBalancer {

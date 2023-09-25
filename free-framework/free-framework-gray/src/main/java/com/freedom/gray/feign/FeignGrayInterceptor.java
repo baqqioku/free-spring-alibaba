@@ -11,7 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.free.common.util.TraceUtil.*;
+import static com.freedom.common.util.TraceUtil.*;
 
 
 @Component

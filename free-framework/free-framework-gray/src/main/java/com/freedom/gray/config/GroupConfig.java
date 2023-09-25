@@ -1,6 +1,6 @@
 package com.freedom.gray.config;
 
-import com.free.common.util.TraceUtil;
+import com.freedom.common.util.TraceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

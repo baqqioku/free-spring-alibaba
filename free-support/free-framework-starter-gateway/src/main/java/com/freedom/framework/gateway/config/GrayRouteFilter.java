@@ -1,6 +1,5 @@
 package com.freedom.framework.gateway.config;
 
-import com.free.common.util.TraceUtil;
 import com.freedom.framework.gateway.core.config.GrayRouteMap;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -14,7 +13,6 @@ import reactor.core.publisher.Mono;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.free.common.util.TraceUtil.*;
 import static com.freedom.framework.gateway.core.config.RouteConstant.*;
 
 /**

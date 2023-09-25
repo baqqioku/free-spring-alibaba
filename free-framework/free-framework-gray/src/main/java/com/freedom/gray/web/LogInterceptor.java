@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
-import static com.free.common.util.TraceUtil.TAG;
-import static com.free.common.util.TraceUtil.TRACE_ID;
+import static com.freedom.common.util.TraceUtil.TAG;
+import static com.freedom.common.util.TraceUtil.TRACE_ID;
 
 
 /**

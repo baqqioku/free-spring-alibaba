@@ -1,6 +1,6 @@
 package com.freedom.framework.web.swagger;
 
-import com.free.common.util.SpringContextUtil;
+import com.freedom.common.util.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
