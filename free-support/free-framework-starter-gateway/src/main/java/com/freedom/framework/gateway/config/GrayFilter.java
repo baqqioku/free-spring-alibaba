@@ -26,6 +26,8 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.freedom.common.util.TraceUtil.*;
+
 @Component
 public class GrayFilter implements GlobalFilter, Ordered {
 

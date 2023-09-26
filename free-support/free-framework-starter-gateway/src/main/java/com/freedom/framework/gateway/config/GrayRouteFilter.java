@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.freedom.common.util.TraceUtil.*;
 import static com.freedom.framework.gateway.core.config.RouteConstant.*;
 
 /**

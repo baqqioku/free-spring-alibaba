@@ -3,6 +3,8 @@ package com.freedom.controller;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.fastjson.JSON;
+import com.freedom.common.web.vo.ResponseVo;
+import com.freedom.config.FirstConfig;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.model.AccountTbl;
 import com.freedom.model.User;
@@ -55,6 +57,9 @@ public class SecondController {
 
     @Autowired
     private MyTransactionProducer transactionProducer;
+
+    @Autowired
+    private FirstConfig firstConfig;
 
 
 
@@ -129,6 +134,32 @@ public class SecondController {
         org.springframework.messaging.Message<User> message = MessageBuilder.createMessage(user,new MessageHeaders(head));
         TransactionSendResult result = rocketMQTemplate.sendMessageInTransaction("trans",message,user);
         return "ok";
+    }
+
+
+    @SentinelResource(fallback = "test3FallBack")
+    @RequestMapping("/test3")
+    public String test3(){
+        int i = new Random().nextInt(10);
+        if(i%2==0){
+            System.out.println(1/0);
+        }
+        return "ok";
+    }
+
+    @SentinelResource(fallback = "test3FallBack")
+    @RequestMapping("/test4")
+    public String test4(){
+        int i = new Random().nextInt(10);
+        if(i%2==0){
+            System.out.println(1/0);
+        }
+
+        return firstConfig.toString();
+    }
+
+    public String test3FallBack(){
+        return "error";
     }
 
 

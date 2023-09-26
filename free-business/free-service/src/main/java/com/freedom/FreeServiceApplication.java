@@ -3,6 +3,7 @@ package com.freedom;
 
 import com.alibaba.nacos.api.config.annotation.NacosProperty;
 import com.freedom.config.FirstConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @RefreshScope
 @EnableAsync
 //@MapperScan(basePackages = "com.freedom.**.mapper")
+@Slf4j
 public class FreeServiceApplication {
 
     @Autowired
@@ -31,6 +33,7 @@ public class FreeServiceApplication {
         ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(FreeServiceApplication.class);
         configurableApplicationContext.getBeanFactory();
 
+        System.out.println(11);
 
         //
 

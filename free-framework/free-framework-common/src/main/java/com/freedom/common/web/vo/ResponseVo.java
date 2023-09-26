@@ -4,6 +4,7 @@ public class ResponseVo <T>{
     private Integer code;
     private String message;
 
+
     private static Integer errorCode = -1;
     private static Integer successCode =1;
 

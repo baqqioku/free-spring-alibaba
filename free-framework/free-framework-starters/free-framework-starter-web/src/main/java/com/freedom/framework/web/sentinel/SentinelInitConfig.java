@@ -1,4 +1,12 @@
 package com.freedom.framework.web.sentinel;
 
-public class SentinelInitConfig {
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
+
+
+public class SentinelInitConfig implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+    @Override
+    public void initialize(ConfigurableApplicationContext applicationContext) {
+
+    }
 }
