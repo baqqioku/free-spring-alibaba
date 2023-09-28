@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import static com.freedom.common.util.TraceUtil.*;
 
 
@@ -45,8 +46,8 @@ public class GrayRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBal
     @Override
     public Mono<Response<ServiceInstance>> choose(Request request) {
         HttpHeaders headers = (HttpHeaders) request.getContext();
-        ServiceInstanceListSupplier supplier = serviceInstanceListSupplierProvider.getIfAvailable(NoopServiceInstanceListSupplier::new);
-        return supplier.get(request).next().map(list -> processInstanceResponse(list, headers));
+        ServiceInstanceListSupplier serviceInstanceListSupplier = serviceInstanceListSupplierProvider.getIfAvailable(NoopServiceInstanceListSupplier::new);
+        return serviceInstanceListSupplier.get(request).next().map(list -> processInstanceResponse(list, headers));
     }
 
     private Response<ServiceInstance> processInstanceResponse(List<ServiceInstance> serviceInstances, HttpHeaders headers) {

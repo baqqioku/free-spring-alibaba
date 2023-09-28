@@ -164,4 +164,20 @@ public class SecondController {
 
 
 
+    @SentinelResource(fallback = "test3FallBack")
+    @RequestMapping("/test5")
+    public String test5(){
+
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return firstConfig.toString();
+    }
+
+
+
+
+
 }
