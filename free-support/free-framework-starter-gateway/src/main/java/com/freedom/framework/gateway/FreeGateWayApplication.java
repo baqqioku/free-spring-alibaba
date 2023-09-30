@@ -12,6 +12,8 @@ public class FreeGateWayApplication {
 
     public static void main(String[] args) {
         System.getProperties().put("spring.main.web-application-type","reactive");
+        System.setProperty("csp.sentinel.app.type", "1");
+        System.getProperties().put("tag","prod");
         SpringApplication.run(FreeGateWayApplication.class, args);
     }
 }

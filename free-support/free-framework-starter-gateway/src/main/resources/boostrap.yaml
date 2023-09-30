@@ -1,0 +1,34 @@
+sentinel:
+  # 支持链路限流
+  web-context-unify: false
+  ## 关闭官方默认收敛所有context
+  filter:
+    enabled: true
+  # 取消控制台懒加载
+  eager: true
+  scg: #配置限流之后，响应内容
+    fallback:
+      mode: response
+      response-status: 200
+      response-body: "{\"resultCode\": 5005,\"description\": \"The system is currently experiencing network congestion. Please try again later!\"}"  #限流响应内容
+      content-type: "application/json"
+  #控制台地址
+  transport:
+    dashboard: localhost:8320  #控制台路径
+    port: 8179
+  datasource:
+    # 名称随意
+    gw-flow:
+      nacos:
+        server-addr: ${spring.cloud.nacos.config.server-addr}  #nacos地址
+        dataId: ${spring.application.name}-gw-flow-rules # 在修改的sentinel 源码中定义的规则名
+        namespace: sentinel   #nacos 命名空间
+        groupId: SENTINEL_GROUP
+        rule-type: gw-flow  #枚举类型
+    gw-api-group:
+      nacos:
+        server-addr: ${spring.cloud.nacos.config.server-addr} #nacos地址
+        dataId: ${spring.application.name}-gw-api-rules # 在修改的sentinel 源码中定义的规则名
+        namespace: sentinel  #nacos 命名空间
+        groupId: SENTINEL_GROUP
+        rule-type: gw-api-group #枚举类型
