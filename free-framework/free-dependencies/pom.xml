@@ -29,11 +29,13 @@
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <seata.version>1.4.2</seata.version>
         <rocketmq.version>2.2.0</rocketmq.version>
+        <redisson.version>3.16.7</redisson.version>
         <mysql.version>8.0.12</mysql.version>
         <druid.version>1.2.4</druid.version>
         <hibernate.validator.version>6.0.7.Final</hibernate.validator.version>
         <mybatis-plus.version>3.4.3.1</mybatis-plus.version>
         <spring-statemachine.version>3.2.1</spring-statemachine.version>
+        <jackson-datatype-jsr310.version>2.12.5</jackson-datatype-jsr310.version>
 
     </properties>
 
@@ -73,6 +75,11 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
@@ -128,6 +135,12 @@
             <dependency>
                 <groupId>com.freedom</groupId>
                 <artifactId>free-framework-starter-mysql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-framework-starter-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

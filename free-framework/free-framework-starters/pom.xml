@@ -22,6 +22,7 @@
         <module>free-framework-starter-web</module>
         <module>free-framework-starter-seata</module>
         <module>free-framework-starter-mysql</module>
+        <module>free-framework-starter-redis</module>
     </modules>
 
 

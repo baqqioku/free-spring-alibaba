@@ -14,13 +14,18 @@ public class RocketMQListenerContainerAfterProcess implements BeanPostProcessor 
 
         if(bean instanceof DefaultRocketMQListenerContainer){
             DefaultRocketMQListenerContainer defaultRocketMQListenerContainer = (DefaultRocketMQListenerContainer) bean;
-            defaultRocketMQListenerContainer.getConsumer().getDefaultMQPushConsumerImpl().registerConsumeMessageHook(new ConsumerHook());
+            if( defaultRocketMQListenerContainer.getConsumer()!=null){
+                defaultRocketMQListenerContainer.getConsumer().getDefaultMQPushConsumerImpl().registerConsumeMessageHook(new ConsumerHook());
+            }
+
             return defaultRocketMQListenerContainer;
         }
 
         if(bean instanceof RocketMQTemplate){
             RocketMQTemplate template = (RocketMQTemplate) bean;
-            template.getProducer().getDefaultMQProducerImpl().registerSendMessageHook(new SengMessageHook());
+            if(template.getProducer()!=null){
+                template.getProducer().getDefaultMQProducerImpl().registerSendMessageHook(new SengMessageHook());
+            }
             return template;
         }
 

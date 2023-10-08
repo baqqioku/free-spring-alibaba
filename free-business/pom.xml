@@ -18,6 +18,8 @@
         <module>free-service-second</module>
         <module>free-service-third</module>
         <module>free-service-five</module>
+        <module>free-service-six</module>
+
     </modules>
 
     <properties>

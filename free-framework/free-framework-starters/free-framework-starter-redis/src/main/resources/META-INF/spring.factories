@@ -1,0 +1,3 @@
+# PropertySource Loaders
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.freedom.framework.redis.RedissonAutoConfiguration
