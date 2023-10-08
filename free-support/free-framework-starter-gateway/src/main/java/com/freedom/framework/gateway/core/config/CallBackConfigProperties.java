@@ -13,6 +13,7 @@ import java.util.List;
 
 @Component
 @ConfigurationProperties(prefix = "pay.callback")
+@RefreshScope
 public class CallBackConfigProperties {
 
 

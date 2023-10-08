@@ -12,6 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 
@@ -23,6 +24,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 //@MapperScan(basePackages = "com.freedom.**.mapper")
 @Slf4j
+//@RefreshScope
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class FreeServiceApplication {
 
     @Autowired
@@ -32,7 +35,7 @@ public class FreeServiceApplication {
         System.getProperties().setProperty("tag","prod");
         ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(FreeServiceApplication.class);
         configurableApplicationContext.getBeanFactory();
-
+        //configurableApplicationContext.refresh();
         System.out.println(11);
 
         //

@@ -3,6 +3,8 @@ package com.freedom.controller;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.freedom.common.web.vo.ResponseVo;
 import com.freedom.config.FirstConfig;
 import com.freedom.config.GrayRouteConfig;
@@ -21,6 +23,8 @@ import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +39,8 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/second")
-@Api
+//不加这个@Value的值无法自动更新
+@RefreshScope
 public class SecondController {
     Logger logger = LoggerFactory.getLogger(SecondController.class);
 
@@ -60,6 +65,13 @@ public class SecondController {
 
     @Autowired
     private FirstConfig firstConfig;
+
+    @Value("${foo:}")
+    private String foo;
+
+
+    @NacosValue(value = "${foo:}",autoRefreshed = true)
+    private String nacosFoo;
 
 
 
@@ -173,11 +185,26 @@ public class SecondController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        logger.info(getFoo());
+        logger.info(nacosFoo);
         return firstConfig.toString();
     }
 
+    public String getFoo() {
+        return foo;
+    }
 
+    public void setFoo(String foo) {
+        this.foo = foo;
+    }
 
+    @NacosConfigListener(dataId = "free-service.properties")
+    public String getNacosFoo() {
+        return nacosFoo;
+    }
 
-
+    @NacosConfigListener(dataId = "free-service.properties")
+    public void setNacosFoo(String nacosFoo) {
+        this.nacosFoo = nacosFoo;
+    }
 }
