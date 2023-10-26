@@ -19,7 +19,7 @@
         <module>free-service-third</module>
         <module>free-service-five</module>
         <module>free-service-six</module>
-
+        <module>free-seven</module>
     </modules>
 
     <properties>

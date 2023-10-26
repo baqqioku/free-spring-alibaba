@@ -23,6 +23,7 @@
         <module>free-framework-starter-seata</module>
         <module>free-framework-starter-mysql</module>
         <module>free-framework-starter-redis</module>
+        <module>free-framework-starter-dubbo</module>
     </modules>
 
 

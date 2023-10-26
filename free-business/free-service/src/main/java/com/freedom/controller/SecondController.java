@@ -14,6 +14,7 @@ import com.freedom.model.mapper.AccountTblMapper;
 import com.freedom.producer.MyTransactionProducer;
 import com.freedom.second.api.SecondApi;
 import com.freedom.service.FristService;
+import com.freedom.service.UserService;
 import io.swagger.annotations.Api;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
@@ -35,6 +36,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 
 @RestController
@@ -83,6 +87,9 @@ public class SecondController {
 
     @Autowired
     private FristService fristService;
+
+    @Autowired
+    private UserService userService;
 
 
     @RequestMapping("/test1")
@@ -175,7 +182,6 @@ public class SecondController {
     }
 
 
-
     @SentinelResource(fallback = "test3FallBack")
     @RequestMapping("/test5")
     public String test5(){
@@ -188,6 +194,23 @@ public class SecondController {
         logger.info(getFoo());
         logger.info(nacosFoo);
         return firstConfig.toString();
+    }
+
+    @RequestMapping("/test6")
+    public String test6() throws InterruptedException {
+        /*for(int i=0;i<10000000;i++){
+            userService.doSave();
+            //Thread.sleep(50);
+        }*/
+
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        //for(int i=0;i<10000000;i++){
+            executor.execute(() -> {
+                userService.doSave();
+            //});
+        });
+
+        return "ok";
     }
 
     public String getFoo() {

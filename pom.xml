@@ -15,6 +15,7 @@
         <module>free-framework</module>
         <module>free-business</module>
         <module>free-support</module>
+        <module>free-framework</module>
     </modules>
 
     <properties>

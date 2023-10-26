@@ -25,13 +25,17 @@ public class SixController {
     @RequestMapping("/test1")
     public String test1(){
         int i = new Random().nextInt(10);
+        boolean flag =false;
         try {
-            redissonLocker.tryLock("test1",-1,3, TimeUnit.SECONDS);
-            Thread.sleep(1000*60);
+             flag = redissonLocker.tryLock("test1",-1,3, TimeUnit.SECONDS);
+             //redissonLocker.lock("test1",-1, TimeUnit.SECONDS);
+            Thread.sleep(1000*5);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            redissonLocker.unlock();
+            if(flag) {
+                redissonLocker.unlock();
+            }
         }
         return "test1";
     }
