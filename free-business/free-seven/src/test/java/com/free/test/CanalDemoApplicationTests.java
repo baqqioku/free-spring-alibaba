@@ -22,8 +22,7 @@ public class CanalDemoApplicationTests {
     @Test
     public void contextLoads() {
         // 创建链接，connector也是canal数据操作客户端，默认端口号：11111
-        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("localhost",
-                11111), "example", "", "");
+        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("127.0.0.1", 11110), "example", "root", "root");
         int batchSize = 1000;
         int emptyCount = 0;
         try {
@@ -36,6 +35,7 @@ public class CanalDemoApplicationTests {
 
             while (true) {
                 // 尝试拿batchSize条记录，有多少取多少，不会阻塞等待
+
                 Message message = connector.getWithoutAck(batchSize);
                 // 消息id
                 long batchId = message.getId();

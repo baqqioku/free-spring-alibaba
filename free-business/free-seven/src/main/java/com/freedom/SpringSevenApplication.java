@@ -10,8 +10,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication(scanBasePackages = "com.freedom")
 @ServletComponentScan
-@EnableDiscoveryClient
-
+@EnableDiscoveryClient(autoRegister = false)
 @EnableAsync
 //@MapperScan(basePackages = "com.freedom.**.mapper")
 @Slf4j

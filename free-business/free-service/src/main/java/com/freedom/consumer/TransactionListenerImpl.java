@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Random;
 
 @Component
 @Slf4j
@@ -32,6 +33,11 @@ public class TransactionListenerImpl implements TransactionListener {
         AccountTbl accountTbl = JSON.parseObject(msg.getBody(),AccountTbl.class);
         // 执行本地事务
         boolean success = fristService.test2(accountTbl);
+        Random romdom = new Random();
+        if(romdom.nextInt(10) %2==0){
+           return null;
+
+        }
         // 返回事务状态
         return success ? LocalTransactionState.COMMIT_MESSAGE : LocalTransactionState.ROLLBACK_MESSAGE;
     }
@@ -43,6 +49,11 @@ public class TransactionListenerImpl implements TransactionListener {
         AccountTbl accountTbl = JSON.parseObject(msg.getBody(),AccountTbl.class);
 
         boolean success = accountTblMapper.selectByPrimaryKey(accountTbl.getId()) != null;
+        /*try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
         if(success){
             log.info("提交半消息");
             return LocalTransactionState.COMMIT_MESSAGE;
