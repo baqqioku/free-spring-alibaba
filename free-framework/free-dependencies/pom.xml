@@ -28,6 +28,7 @@
         <knife4j.version>3.0.3</knife4j.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <seata.version>1.4.2</seata.version>
+        <dubbo.version>2.7.7</dubbo.version>
         <rocketmq.version>2.2.0</rocketmq.version>
         <redisson.version>3.16.7</redisson.version>
         <mysql.version>8.0.12</mysql.version>
@@ -91,6 +92,12 @@
                 <groupId>io.seata</groupId>
                 <artifactId>seata-spring-boot-starter</artifactId>
                 <version>${seata.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
             </dependency>
 
             <!--  knife4j Api文档 -->
