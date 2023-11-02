@@ -49,7 +49,6 @@
             <groupId>com.freedom</groupId>
             <artifactId>free-service-eight-api</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
 
 

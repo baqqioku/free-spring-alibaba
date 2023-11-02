@@ -17,10 +17,16 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-common</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>
