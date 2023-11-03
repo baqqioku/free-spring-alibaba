@@ -1,4 +1,4 @@
-package com.freedom.service.eight.model;
+package com.freedom.model;
 
 import java.time.LocalDateTime;
 

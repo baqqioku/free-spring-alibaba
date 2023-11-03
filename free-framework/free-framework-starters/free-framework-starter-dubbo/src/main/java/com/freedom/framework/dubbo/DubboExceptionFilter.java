@@ -4,6 +4,8 @@ import com.freedom.common.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.common.extension.Activate;
+import org.apache.dubbo.common.utils.ReflectUtils;
+import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.rpc.*;
 import org.apache.dubbo.rpc.service.GenericService;
 
@@ -61,9 +63,32 @@ public class DubboExceptionFilter implements Filter,Filter.Listener {
                 }
 
                 Method method = invoker.getInterface().getMethod(invocation.getMethodName(), invocation.getParameterTypes());
+                Class<?>[] exceptionsClasses = method.getExceptionTypes();
+                for(Class<?> exceptionClass : exceptionsClasses){
+                    if(exception.getClass().equals(exceptionClass)){
+                        return;
+                    }
+                }
+                String errorInfo = errorInfo(invoker, invocation, exception);
+                log.error(errorInfo, exception);
+
+                // directly throw if exception class and interface class are in the same jar file.
+
+                String serviceFile = ReflectUtils.getCodeBase(invoker.getInterface());
+                String exceptionFile = ReflectUtils.getCodeBase(exception.getClass());
+                if (serviceFile == null || exceptionFile == null || serviceFile.equals(exceptionFile)) {
+                    return;
+                }
+
+                String className = exception.getClass().getName();
+                if(className.startsWith("java.") || className.startsWith("javax.")){
+                    return;
+                }
+
+                appResponse.setException(new RuntimeException(StringUtils.toString(exception)));
 
             }catch (Exception e){
-
+                log.warn("Fail to ExceptionFilter when called by " +RpcContext.getContext().getRemoteHostName());
             }
 
         }

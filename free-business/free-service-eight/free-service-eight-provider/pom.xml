@@ -37,17 +37,23 @@
 
         <dependency>
             <groupId>com.freedom</groupId>
-            <artifactId>free-framework-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.freedom</groupId>
             <artifactId>free-framework-starter-dubbo</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-mysql</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
             <artifactId>free-service-eight-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-service-eight-second-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

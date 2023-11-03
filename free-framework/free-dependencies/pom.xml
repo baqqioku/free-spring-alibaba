@@ -37,6 +37,7 @@
         <mybatis-plus.version>3.4.3.1</mybatis-plus.version>
         <spring-statemachine.version>3.2.1</spring-statemachine.version>
         <jackson-datatype-jsr310.version>2.12.5</jackson-datatype-jsr310.version>
+        <skywalking.version>8.6.0</skywalking.version>
 
     </properties>
 
@@ -153,6 +154,12 @@
 
             <dependency>
                 <groupId>com.freedom</groupId>
+                <artifactId>free-framework-starter-dubbo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.freedom</groupId>
                 <artifactId>free-framework-gray</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -169,6 +176,18 @@
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger-annotations.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-logback-1.x</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-trace</artifactId>
+                <version>${skywalking.version}</version>
             </dependency>
 
 

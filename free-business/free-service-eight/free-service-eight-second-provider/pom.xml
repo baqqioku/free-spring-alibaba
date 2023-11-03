@@ -16,4 +16,44 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>free-dependencies</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-nacos</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-dubbo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-framework-starter-mysql</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>free-service-eight-second-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+    </dependencies>
+
 </project>
