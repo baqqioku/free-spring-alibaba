@@ -10,10 +10,10 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-@DubboService(group = "guoguo")
+@DubboService(cluster = "failfast")
 public class FirstDubboServiceImpl implements FristDubboService {
 
-    @DubboReference(group = "guoguo")
+    @DubboReference(retries = 0, timeout = 5000, cluster = "failfast",url = "dubbo://127.0.0.1:20882",check = false)
     private SecondService secondDubboService;
 
     @Autowired

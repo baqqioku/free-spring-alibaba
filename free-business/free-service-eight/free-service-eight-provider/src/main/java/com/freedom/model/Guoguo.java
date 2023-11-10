@@ -1,4 +1,4 @@
-package com.freedom.service.eight.model;
+package com.freedom.model;
 
 public class Guoguo {
     private Long id;

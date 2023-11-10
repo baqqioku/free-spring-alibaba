@@ -20,6 +20,9 @@ public class TxProducerListener implements RocketMQLocalTransactionListener {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+
+
 
     /**
      * 每次推送消息会执行executeLocalTransaction方法，首先会发送半消息，到这里的时候是执行具体本地业务，

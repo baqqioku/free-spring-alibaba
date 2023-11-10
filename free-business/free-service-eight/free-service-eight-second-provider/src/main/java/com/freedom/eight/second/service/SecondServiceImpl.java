@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Random;
 
-@DubboService(group = "guoguo")
+@DubboService(cluster = "failfast",retries = 0)
 public class SecondServiceImpl implements SecondService {
 
     @Autowired

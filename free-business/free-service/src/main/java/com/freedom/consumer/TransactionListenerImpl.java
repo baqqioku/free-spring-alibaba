@@ -35,8 +35,7 @@ public class TransactionListenerImpl implements TransactionListener {
         boolean success = fristService.test2(accountTbl);
         Random romdom = new Random();
         if(romdom.nextInt(10) %2==0){
-           return null;
-
+           return LocalTransactionState.UNKNOW;
         }
         // 返回事务状态
         return success ? LocalTransactionState.COMMIT_MESSAGE : LocalTransactionState.ROLLBACK_MESSAGE;

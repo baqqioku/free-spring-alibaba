@@ -22,6 +22,7 @@ public class DubboExceptionHandler {
     @ExceptionHandler(RpcException.class)
     public ResponseVo<Void> rpcException(RpcException rpcException) {
         log.error("dubbo调用异常", rpcException);
-        return ResponseVo.error(BaseResultCodeEnum.SYSTEM_ERROR.getMessage()+"dubbo调用异常:" + rpcException.getMessage());
+        //return ResponseVo.error(BaseResultCodeEnum.SYSTEM_ERROR.getMessage()+"dubbo调用异常:" + rpcException.getMessage());
+        return ResponseVo.error(BaseResultCodeEnum.SYSTEM_ERROR.getMessage());
     }
 }
