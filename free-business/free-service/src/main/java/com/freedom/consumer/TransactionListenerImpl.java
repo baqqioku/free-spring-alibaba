@@ -32,7 +32,12 @@ public class TransactionListenerImpl implements TransactionListener {
 
         AccountTbl accountTbl = JSON.parseObject(msg.getBody(),AccountTbl.class);
         // 执行本地事务
-        boolean success = fristService.test2(accountTbl);
+        boolean success = false;
+        try {
+            success = fristService.test2(accountTbl);
+        }catch (Exception e){
+            return LocalTransactionState.ROLLBACK_MESSAGE;
+        }
         Random romdom = new Random();
         if(romdom.nextInt(10) %2==0){
            return LocalTransactionState.UNKNOW;
@@ -46,7 +51,7 @@ public class TransactionListenerImpl implements TransactionListener {
     public LocalTransactionState checkLocalTransaction(MessageExt msg) {
         //boolean success = checkLocalTransaction();
         AccountTbl accountTbl = JSON.parseObject(msg.getBody(),AccountTbl.class);
-
+        log.info("回查第一个");
         boolean success = accountTblMapper.selectByPrimaryKey(accountTbl.getId()) != null;
         /*try {
             Thread.sleep(100000);

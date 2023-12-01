@@ -123,6 +123,7 @@ public class FristService {
         try {
             accountTblMapper.insertSelective(accountTbl);
             flag = true;
+            System.out.println(1/0);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("异常",e);

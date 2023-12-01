@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RocketMQMessageListener(topic = "example",   consumerGroup = "guoguotest")
+@RocketMQMessageListener(topic = "example",   consumerGroup = "g1")
 public class CanalEtl implements RocketMQListener<String> {
     @Override
     public void onMessage(String s) {

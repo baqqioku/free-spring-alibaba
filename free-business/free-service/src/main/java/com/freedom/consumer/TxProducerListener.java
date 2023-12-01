@@ -12,6 +12,8 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Random;
+
 @Slf4j
 @Service
 @RocketMQTransactionListener
@@ -20,7 +22,6 @@ public class TxProducerListener implements RocketMQLocalTransactionListener {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
 
 
 
@@ -39,13 +40,9 @@ public class TxProducerListener implements RocketMQLocalTransactionListener {
         User user = JSON.parseObject((byte[]) msg.getPayload(),User.class);
 
         int row = userMapper.insertSelective(user);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if(row<=0){
-            return RocketMQLocalTransactionState.ROLLBACK;
+
+        if(new Random().nextInt(10) % 2 == 0){
+            return RocketMQLocalTransactionState.UNKNOWN;
         }
 
 

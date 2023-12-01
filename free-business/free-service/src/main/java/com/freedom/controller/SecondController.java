@@ -131,27 +131,31 @@ public class SecondController {
     @SentinelResource
     @RequestMapping("/test2")
     public String test2(){
-        int i = new Random().nextInt(1000);
-        String key = UUID.randomUUID().toString();
-        User user = new User();
-        user.setId((long) i);
-        user.setMoney(100L);
+
+        for(int i=0;i<20;i++){
+            //int i = new Random().nextInt(1000);
+            String key = UUID.randomUUID().toString();
+            User user = new User();
+            user.setId((long) i);
+            user.setMoney(100L);
         /*Message message = new Message();
         message.setBody(JSON.toJSONBytes(user));
         message.setTags("trans");
         message.setTopic("trans");
         message.setKeys(key);*/
 
-        String name = "name" + i;
-        //MqMessage message = MqMessage.builder().name("事务消息" + i).msg("这是事务消息" + i).build();
-        //Message<MqMessage> mqMessage = MessageBuilder.withPayload("事务消息" + i).setHeader("key", name).build();
+            String name = "name" + i;
+            //MqMessage message = MqMessage.builder().name("事务消息" + i).msg("这是事务消息" + i).build();
+            //Message<MqMessage> mqMessage = MessageBuilder.withPayload("事务消息" + i).setHeader("key", name).build();
 
-        org.springframework.messaging.Message mqMessage = MessageBuilder.withPayload("事务消息" + i).setHeader("key", i).build();
-        Map head = new HashMap<>();
-        head.put("key", i);
+            org.springframework.messaging.Message mqMessage = MessageBuilder.withPayload("事务消息" + i).setHeader("key", i).build();
+            Map head = new HashMap<>();
+            head.put("key", i);
 
-        org.springframework.messaging.Message<User> message = MessageBuilder.createMessage(user,new MessageHeaders(head));
-        TransactionSendResult result = rocketMQTemplate.sendMessageInTransaction("trans",message,user);
+            org.springframework.messaging.Message<User> message = MessageBuilder.createMessage(user,new MessageHeaders(head));
+            TransactionSendResult result = rocketMQTemplate.sendMessageInTransaction("trans",message,user);
+
+        }
         return "ok";
     }
 
