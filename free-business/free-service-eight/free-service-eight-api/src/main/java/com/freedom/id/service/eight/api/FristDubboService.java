@@ -1,4 +1,4 @@
-package com.freedom.service.eight.api;
+package com.freedom.id.service.eight.api;
 
 
 public interface FristDubboService {

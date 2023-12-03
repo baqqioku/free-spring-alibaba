@@ -227,6 +227,12 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.freedom</groupId>
+                <artifactId>id-generator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
 
 

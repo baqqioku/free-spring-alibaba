@@ -38,12 +38,12 @@ public class SqlLogPlugins implements Interceptor {
         }
         BoundSql boundSql  = mappedStatement.getBoundSql(paremeter);
         Configuration configuration = mappedStatement.getConfiguration();
-        String sql = showSlq(configuration,boundSql);
+        String sql = showSql(configuration,boundSql);
         LOGGER.info(sql);
         return invocation.proceed();
     }
 
-    private String showSlq(Configuration configuration, BoundSql boundSql) {
+    private String showSql(Configuration configuration, BoundSql boundSql) {
         Object parameterObject = boundSql.getParameterObject();
         List<ParameterMapping> parameterMappingList = boundSql.getParameterMappings();
         String sql = boundSql.getSql().replaceAll("[\\s]+", " ");

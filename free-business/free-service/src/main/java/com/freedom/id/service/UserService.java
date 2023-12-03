@@ -1,4 +1,4 @@
-package com.freedom.service;
+package com.freedom.id.service;
 
 import com.freedom.model.User;
 import com.freedom.model.mapper.UserMapper;

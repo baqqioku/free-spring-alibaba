@@ -1,9 +1,8 @@
 package com.freedom.controller;
 
 import com.freedom.config.EightConfig;
-import com.freedom.service.eight.api.FristDubboService;
+import com.freedom.id.service.eight.api.FristDubboService;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,4 +25,6 @@ public class EightController {
         log.info(eightConfig.toString());
         return fristDubboService.sayHello(name);
     }
+
+
 }

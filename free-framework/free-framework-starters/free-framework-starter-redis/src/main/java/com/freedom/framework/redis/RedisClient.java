@@ -7,11 +7,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.data.redis.core.*;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
+//@Component
 public class RedisClient {
 
     @Autowired

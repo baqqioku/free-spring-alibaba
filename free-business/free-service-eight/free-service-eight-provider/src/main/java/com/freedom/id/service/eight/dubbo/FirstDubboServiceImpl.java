@@ -1,10 +1,10 @@
-package com.freedom.service.eight.dubbo;
+package com.freedom.id.service.eight.dubbo;
 
 
 import com.freedom.eight.api.SecondService;
 import com.freedom.model.Guoguo;
 import com.freedom.model.mapper.GuoguoMapper;
-import com.freedom.service.eight.api.FristDubboService;
+import com.freedom.id.service.eight.api.FristDubboService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;

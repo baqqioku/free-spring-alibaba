@@ -29,5 +29,10 @@
             <groupId>com.freedom</groupId>
             <artifactId>free-framework-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.freedom</groupId>
+            <artifactId>id-generator</artifactId>
+        </dependency>
     </dependencies>
 </project>

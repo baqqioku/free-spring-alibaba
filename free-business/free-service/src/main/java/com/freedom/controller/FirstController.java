@@ -11,7 +11,7 @@ import com.freedom.model.AccountTbl;
 import com.freedom.model.mapper.AccountTblMapper;
 import com.freedom.second.api.SecondApi;
 import com.freedom.second.api.ao.FirstApi;
-import com.freedom.service.FristService;
+import com.freedom.id.service.FristService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

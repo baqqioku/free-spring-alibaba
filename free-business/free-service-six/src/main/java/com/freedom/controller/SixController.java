@@ -65,6 +65,13 @@ public class SixController {
         return "ok";
     }
 
+    @RequestMapping("/test4")
+    public String test4(){
+        int i = new Random().nextInt(10);
+
+        return "ok";
+    }
+
 
     public String test3FallBack(){
         return "error";

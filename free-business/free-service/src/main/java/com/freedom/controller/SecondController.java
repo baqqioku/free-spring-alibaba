@@ -5,7 +5,6 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.freedom.common.web.vo.ResponseVo;
 import com.freedom.config.FirstConfig;
 import com.freedom.config.GrayRouteConfig;
 import com.freedom.model.AccountTbl;
@@ -13,9 +12,8 @@ import com.freedom.model.User;
 import com.freedom.model.mapper.AccountTblMapper;
 import com.freedom.producer.MyTransactionProducer;
 import com.freedom.second.api.SecondApi;
-import com.freedom.service.FristService;
-import com.freedom.service.UserService;
-import io.swagger.annotations.Api;
+import com.freedom.id.service.FristService;
+import com.freedom.id.service.UserService;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.common.message.Message;
@@ -38,7 +36,6 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 
 @RestController
