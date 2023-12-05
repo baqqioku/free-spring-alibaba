@@ -16,13 +16,18 @@ public class CosIdManager {
 
     @Transactional(rollbackFor = Exception.class)
     public SegmentIdVo getSegment(String businessId,Long segmentCount){
-        CosIdSegment  cosIdSegment = cosIdSegmentService.saveOrUpdate(businessId);
-        Boolean result = cosIdSegmentService.getBaseMapper().updateCosIdSegmentAutoIncrement(cosIdSegment.getId(),segmentCount);
+        CosIdSegment cosIdSegment = initBusinessSegment(businessId);
+        Boolean result = cosIdSegmentService.getBaseMapper().updateCosIdSegmentAutoIncrement(cosIdSegment.getId(), segmentCount);
         BizAssert.isTrue(result, "获取号段异常");
         cosIdSegment = cosIdSegmentService.getById(cosIdSegment.getId());
-        return new SegmentIdVo().setStartId(cosIdSegment.getAutoIncrement() - segmentCount)
+        return new SegmentIdVo()
+                .setStartId(cosIdSegment.getAutoIncrement() - segmentCount)
                 .setEndId(cosIdSegment.getAutoIncrement())
                 .setBusinessId(businessId);
-
     }
+
+    public CosIdSegment initBusinessSegment(String businessId) {
+        return cosIdSegmentService.saveOrUpdate(businessId);
+    }
+
 }

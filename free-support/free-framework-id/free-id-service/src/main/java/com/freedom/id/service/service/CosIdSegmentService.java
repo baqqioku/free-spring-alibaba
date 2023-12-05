@@ -21,30 +21,26 @@ public class CosIdSegmentService extends ServiceImpl<CosIdSegmentMapper, CosIdSe
     @Autowired
     private RedisClient redisClient;
 
-    public CosIdSegment saveOrUpdate(String businessId){
-        CosIdSegment cosIdSegment = this.lambdaQuery().eq(CosIdSegment::getBusinessId,businessId).one();
-
-        if(cosIdSegment!=null){
+    public CosIdSegment saveOrUpdate(String businessId) {
+        CosIdSegment cosIdSegment = this.lambdaQuery().eq(CosIdSegment::getBusinessId, businessId).one();
+        if (cosIdSegment != null) {
             return cosIdSegment;
         }
-
         RLock lock = redisClient.getLock(INIT_BUSINESS_COS_ID_LOCK.concat(businessId));
         try {
-            lock.tryLock(20,20, TimeUnit.SECONDS);
-
-            cosIdSegment = this.lambdaQuery().eq(CosIdSegment::getBusinessId,businessId).one();
-            if(Objects.isNull(cosIdSegment)){
+            lock.tryLock(20, 20, TimeUnit.MINUTES);
+            cosIdSegment = this.lambdaQuery().eq(CosIdSegment::getBusinessId, businessId).one();
+            if (Objects.isNull(cosIdSegment)) {
                 cosIdSegment = new CosIdSegment()
                         .setBusinessId(businessId)
-                        .setAutoIncrement(1L)
-                ;
+                        .setAutoIncrement(1L);
                 this.save(cosIdSegment);
             }
+            return cosIdSegment;
         } catch (Exception e) {
             log.error("获取号段失败", e);
             Thread.currentThread().interrupt();
-
-        }finally {
+        } finally {
             lock.unlock();
         }
         return null;

@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 
 @Service
 public class SegmentIdGenerator implements IdGenerator {
-    @Autowired
+    @Resource
     private BusinessCosIdSegmentCache businessCosIdSegment;
 
     @Override
@@ -23,3 +23,4 @@ public class SegmentIdGenerator implements IdGenerator {
         return businessCosIdSegment.getBusinessCosIdGenerator(businessId);
     }
 }
+
