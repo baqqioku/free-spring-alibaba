@@ -48,8 +48,9 @@ public class BusinessCosIdSegmentCache {
      * @return 号段链
      */
     public BusinessCosIdSegmentChain getBusinessCosIdGenerator(String businessId) {
-        return idGeneratorAutoIncrement.computeIfAbsent(businessId, s ->
-                new BusinessCosIdSegmentChain(businessId, DEFAULT_SAFE_DISTANCE, DEFAULT_PREFETCHING_COUNT, this::generatorSegmentChain));
+        return idGeneratorAutoIncrement.computeIfAbsent(
+                businessId,
+                s -> new BusinessCosIdSegmentChain(businessId, DEFAULT_SAFE_DISTANCE, DEFAULT_PREFETCHING_COUNT, this::generatorSegmentChain));
     }
 
     /**
