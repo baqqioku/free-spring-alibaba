@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
@@ -65,6 +66,18 @@ public class RedissonAutoConfiguration {
     public <T> RedisTemplate<String, T> redisTemplate(RedisConnectionFactory factory, RedisSerializer<?> redisSerializer) {
         // 指定序列化方式
         RedisTemplate<String, T> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setKeySerializer(RedisSerializer.string());
+        redisTemplate.setHashKeySerializer(RedisSerializer.string());
+        redisTemplate.setValueSerializer(redisSerializer);
+        redisTemplate.setHashValueSerializer(redisSerializer);
+        redisTemplate.setConnectionFactory(factory);
+        return redisTemplate;
+    }
+
+    @Bean(name="stringRedisTemplate")
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory factory, RedisSerializer<?> redisSerializer) {
+        // 指定序列化方式
+        StringRedisTemplate redisTemplate = new StringRedisTemplate();
         redisTemplate.setKeySerializer(RedisSerializer.string());
         redisTemplate.setHashKeySerializer(RedisSerializer.string());
         redisTemplate.setValueSerializer(redisSerializer);

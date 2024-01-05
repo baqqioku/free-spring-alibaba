@@ -1,9 +1,6 @@
 package com.freedom.id.service.model.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.freedom.framework.mysql.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +14,7 @@ import lombok.experimental.Accessors;
 @TableName("cosid_segment")
 public class CosIdSegment extends BaseEntity {
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
     private String businessId;
     private Long autoIncrement;

@@ -1,6 +1,7 @@
 package com.freedom.id.service.eight.dubbo;
 
 
+import com.alibaba.fastjson.JSON;
 import com.freedom.eight.api.SecondService;
 import com.freedom.model.Guoguo;
 import com.freedom.model.mapper.GuoguoMapper;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @DubboService(cluster = "failfast")
 public class FirstDubboServiceImpl implements FristDubboService {
 
-    @DubboReference(retries = 0, timeout = 5000, cluster = "failfast",url = "dubbo://127.0.0.1:20882",check = false)
+    @DubboReference(retries = 0, timeout = 5000, cluster = "failfast",/*url = "dubbo://127.0.0.1:20882",*/check = false)
     private SecondService secondDubboService;
 
     @Autowired
@@ -26,5 +27,11 @@ public class FirstDubboServiceImpl implements FristDubboService {
         guoguo.setName(name);
         guoguoMapper.insertSelective(guoguo);
         return name + secondDubboService.secondSyaHello(name);
+    }
+
+    @Override
+    public String findGuoguo(Long id) {
+        Guoguo guoguo  = guoguoMapper.selectByPrimaryKey(id)  ;
+        return JSON.toJSONString(guoguo);
     }
 }

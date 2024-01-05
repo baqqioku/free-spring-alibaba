@@ -26,24 +26,21 @@ public class FiveController {
 
 
 
-    private final BusinessCosIdSegmentChain test;
+ /*   private final BusinessCosIdSegmentChain test;
 
     public FiveController(IdGenerator idGenerator) {
-        test = idGenerator.getBusinessCosIdSegmentChain("test");
-    }
+        //test = idGenerator.getBusinessCosIdSegmentChain("test");
+    }*/
 
     private final Object lock = new Object();
 
-    @GetMapping("id")
-    public Long testId() {
-        return test.getId();
-    }
+
 
     @RequestMapping("/test")
     public String test(){
         int i = new Random().nextInt(10);
         // Long id = idGenerator.getLongCosId("guoguo");
-        Long id= idGenerator.getBusinessCosIdSegmentChain("test").getId();
+        Long id= idGenerator.getBusinessCosIdSegmentChain("guoguo").getId();
         return id.toString();
     }
 

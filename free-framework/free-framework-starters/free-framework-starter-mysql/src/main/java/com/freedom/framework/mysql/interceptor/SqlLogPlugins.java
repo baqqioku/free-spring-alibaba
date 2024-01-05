@@ -1,4 +1,4 @@
-package com.freedom.framework.mysql.config;
+package com.freedom.framework.mysql.interceptor;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -22,8 +22,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
-@Intercepts({@Signature(args = {MappedStatement.class, Object.class}, method = "update", type = Executor.class),
-        @Signature(args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}, method = "query", type = Executor.class)})
+@Intercepts({
+        @Signature(type = Executor.class,method = "update",args = {MappedStatement.class, Object.class}),
+        @Signature(type = Executor.class,method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})
 public class SqlLogPlugins implements Interceptor {
 
     private static Logger LOGGER = LoggerFactory.getLogger(SqlLogPlugins.class);
