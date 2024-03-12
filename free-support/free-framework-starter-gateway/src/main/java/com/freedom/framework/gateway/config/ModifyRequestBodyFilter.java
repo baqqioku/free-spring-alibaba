@@ -24,7 +24,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-@Component
+//@Component
 public class ModifyRequestBodyFilter implements GlobalFilter, Ordered {
 
     private Logger log = LoggerFactory.getLogger(ModifyRequestBodyFilter.class);

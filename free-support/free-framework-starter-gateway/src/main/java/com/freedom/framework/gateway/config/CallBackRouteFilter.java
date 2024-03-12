@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static com.freedom.common.util.TraceUtil.REQUEST_COLOR;
 
 
-@Component
+//@Component
 public class CallBackRouteFilter implements GlobalFilter, Ordered {
     private Logger log = LoggerFactory.getLogger(GrayRoundRobinLoadBalancer.class);
 

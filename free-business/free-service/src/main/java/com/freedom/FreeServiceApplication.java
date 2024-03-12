@@ -18,7 +18,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication(scanBasePackages = "com.freedom")
 @ServletComponentScan
-@EnableDiscoveryClient(autoRegister = false)
+@EnableDiscoveryClient(autoRegister = true)
 @EnableFeignClients(basePackages = "com.freedom")
 @RefreshScope
 @EnableAsync

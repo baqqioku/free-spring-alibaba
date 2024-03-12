@@ -69,10 +69,11 @@
 
 
         <!-- 原来spring-cloud-dependencies 2020.0.0 版本不在默认加载bootstrap 文件，如果需要加载bootstrap 文件需要手动添加依赖。-->
-<!--        <dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>-->
+            <version>3.1.1</version>
+        </dependency>
 
         <dependency>
             <groupId>com.freedom</groupId>

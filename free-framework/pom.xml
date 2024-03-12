@@ -15,13 +15,11 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
     <modules>
         <module>free-framework-common</module>
         <module>free-framework-gray</module>
         <module>free-dependencies</module>
         <module>free-framework-starters</module>
-        <module>free-framework-starters/free-framework-starter-statemachine</module>
     </modules>
 
     <dependencyManagement>

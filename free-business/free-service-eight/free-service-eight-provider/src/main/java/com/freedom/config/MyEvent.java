@@ -13,7 +13,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @Slf4j
 public class MyEvent implements ApplicationListener<ContextRefreshedEvent> {
     @Override

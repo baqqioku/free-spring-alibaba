@@ -24,8 +24,8 @@
         <module>free-framework-starter-mysql</module>
         <module>free-framework-starter-redis</module>
         <module>free-framework-starter-dubbo</module>
+ <!--       <module>free-framework-starter-statemachine</module>-->
     </modules>
-
 
 
 </project>

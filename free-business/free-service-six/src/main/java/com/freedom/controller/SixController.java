@@ -44,7 +44,7 @@ public class SixController {
     public String test2(){
         int i = new Random().nextInt(10);
         try {
-            redissonLocker.lock("test2",-1, TimeUnit.SECONDS);
+            redissonLocker.lock("test2",-1,3, TimeUnit.SECONDS);
             Thread.sleep(1000*60);
         } catch (InterruptedException e) {
             e.printStackTrace();

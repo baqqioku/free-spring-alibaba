@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.freedom.framework.redis.lock.LockAspect;
 import com.freedom.framework.redis.lock.LockProperties;
 import com.freedom.framework.redis.lock.locker.Locker;
 import com.freedom.framework.redis.lock.locker.RedissonLocker;
@@ -36,8 +37,8 @@ import java.time.format.DateTimeFormatter;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({RedisProperties.class, LockProperties.class})
-@Import({RedisClient.class})
-
+//@Import({RedisClient.class})
+@Import(LockAspect.class)
 public class RedissonAutoConfiguration {
 
     @Bean

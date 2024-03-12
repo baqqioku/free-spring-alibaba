@@ -26,12 +26,11 @@ public class RedissonLocker implements Locker {
         return lock.tryLock(waitTime, leaseTime, unit);
     }
 
-    @Override
-    public void lock(String lockKey, int leaseTime, TimeUnit unit) throws InterruptedException {
+    public boolean lock(String lockKey, int leaseTime, int waitTime, TimeUnit unit) throws InterruptedException {
         RLock lock = getLock(lockKey);
         LOCK_THREAD_LOCAL.set(lock);
         log.info("加锁，thread：{}，key：{}", Thread.currentThread().getId(), lockKey);
-        lock.lock(leaseTime, unit);
+        return lock.tryLock(waitTime, leaseTime, unit);
     }
 
     @Override
