@@ -13,7 +13,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-//@Component
+@Component
 public class RedisClient {
 
     @Autowired

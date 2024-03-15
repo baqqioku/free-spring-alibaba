@@ -3,6 +3,8 @@ package com.freedom.id.service.eight.dubbo;
 
 import com.alibaba.fastjson.JSON;
 import com.freedom.eight.api.SecondService;
+import com.freedom.framework.redis.annotation.CacheExpire;
+import com.freedom.framework.redis.consts.Time;
 import com.freedom.id.service.eight.api.vo.UserVo;
 import com.freedom.model.Guoguo;
 import com.freedom.model.User;
@@ -49,6 +51,7 @@ public class FirstDubboServiceImpl implements FristDubboService {
     }
 
     @Override
+    @CacheExpire(value = Time.DAY)
     @Cacheable(value = "user", key = "#id")
     public UserVo findUser(Long id) {
         User user = userMapper.selectByPrimaryKey(id);
@@ -61,7 +64,7 @@ public class FirstDubboServiceImpl implements FristDubboService {
     }
 
     @Override
-    @CacheEvict(value = "user", key = "#id")
+    @CacheEvict(value = "user", allEntries = true)
     public Integer deleteUser(Long id) {
         return userMapper.deleteByPrimaryKey(id);
     }
