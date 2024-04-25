@@ -4,41 +4,41 @@
 集成了SpringCloudAlibaba 全家桶，实现了灰度发布
 
 #### 软件架构
-软件架构说明
-
-|-- free-business (测试服务)
-|   |-- free-service
-|   |-- free-service-eight
-|   |-- free-service-five
-|   |-- free-service-second
-|   |-- free-service-six
-|   |-- free-service-ten
-|   |-- free-service-third
-|   `-- free-seven
-|-- free-framework （基础框架）
-|   |-- free-dependencies
-|   |-- free-framework-common
-|   |-- free-framework-gray
-|   `-- free-framework-starters
-|-- free-support （基础服务）
-|   |-- free-framework-id
-|   `-- free-framework-starter-gateway
-`-- lib
+    软件架构说明
+    
+    |-- free-business (测试服务)
+    |   |-- free-service
+    |   |-- free-service-eight
+    |   |-- free-service-five
+    |   |-- free-service-second
+    |   |-- free-service-six
+    |   |-- free-service-ten
+    |   |-- free-service-third
+    |   `-- free-seven
+    |-- free-framework （基础框架）
+    |   |-- free-dependencies
+    |   |-- free-framework-common
+    |   |-- free-framework-gray
+    |   `-- free-framework-starters
+    |-- free-support （基础服务）
+    |   |-- free-framework-id
+    |   `-- free-framework-starter-gateway
+    `-- lib
 
 ##### framework 的基础架构
 
-|-- free-dependencies
-|-- free-framework-common
-|-- free-framework-gray (灰度插件)
-`-- free-framework-starters
-    |-- free-framework-starter-dubbo
-    |-- free-framework-starter-mysql
-    |-- free-framework-starter-nacos
-    |-- free-framework-starter-redis
-    |-- free-framework-starter-rocketmq
-    |-- free-framework-starter-seata
-    |-- free-framework-starter-statemachine
-    `-- free-framework-starter-web
+    |-- free-dependencies
+    |-- free-framework-common
+    |-- free-framework-gray (灰度插件)
+    `-- free-framework-starters
+        |-- free-framework-starter-dubbo
+        |-- free-framework-starter-mysql
+        |-- free-framework-starter-nacos
+        |-- free-framework-starter-redis
+        |-- free-framework-starter-rocketmq
+        |-- free-framework-starter-seata
+        |-- free-framework-starter-statemachine
+        `-- free-framework-starter-web
 
 
 
