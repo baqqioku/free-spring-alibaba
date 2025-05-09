@@ -1,3 +1,4 @@
+/*
 package com.freedom.mq;
 
 import com.github.jaskey.rocketmq.core.DedupConcurrentListener;
@@ -30,3 +31,4 @@ public class EightServiceComsumer extends DedupConcurrentListener {
         return true;
     }
 }
+*/

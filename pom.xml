@@ -22,7 +22,6 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <spring-boot-maven-plugin.version>2.6.6</spring-boot-maven-plugin.version>
-
     </properties>
 
     <build>

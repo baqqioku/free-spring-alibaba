@@ -62,11 +62,11 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.github.jaskey</groupId>
             <artifactId>rocketmq-dedup-listener</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
